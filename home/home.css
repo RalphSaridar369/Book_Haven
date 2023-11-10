@@ -59,3 +59,25 @@
     object-fit: cover!important;
     border-radius: 10px;
 }
+
+.home_container_2{
+    margin-top: 40px!important;
+}
+
+.home_wrapper_2{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    margin-top: 40px!important;
+}
+
+.home_wrapper_2  span{
+    display: inline;
+    background-color: rgba(162.264, 246.263, 121.88, 1);
+    border-radius:
+    10% 56% 52% 22% / 0% 40% 0% 32%;
+    height: 400px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}

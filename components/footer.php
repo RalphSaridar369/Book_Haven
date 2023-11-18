@@ -8,6 +8,10 @@
             <span style="color:white">|</span>
             <a href="/register.php">Register</a>
         </div>
+
+        <div class="footer_container_2">
+            <a href="/login.php">Test</a>
+        </div>
     </div>
 </body>
 

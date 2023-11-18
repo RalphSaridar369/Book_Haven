@@ -95,6 +95,31 @@
     font-size:18px;
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (max-width: 1000px) {
+
+    .hero_image_1{
+        width:20vw;
+        height:20vw
+    }
+
+    #heroText{
+        font-size: 16px;
+    }
+
+    .home_wrapper_1{
+        margin-bottom: 120px!important;
+    }
+
+    .home_wrapper_1 p{
+        font-size: 14px!important;
+    }
     
+    #home_wrapper_1_image{
+        width: 150px!important;
+        height:200px!important;    
+    }
+
+    h1{
+        font-size: 26px;
+    }
 }

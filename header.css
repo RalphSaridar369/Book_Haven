@@ -1,6 +1,37 @@
-.header_container{
+.header_container, .header_container_2{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+
+.header_container_2{
+    display: none!important;
+}
+
+.burger_icon:hover{
+    cursor: pointer;
+}
+
+.menu_show{
+    display: block!important;
+}
+
+.menu_not_shown,.menu_shown{
+    display: none;
+    height:100vw;
+    width: 30vw;
+    position:absolute;
+    right:0;
+}
+
+@media screen and (max-width: 1000px) {
+
+    .header_container{
+        display: none!important;
+    }
+
+    .header_container_2{
+        display: flex!important;
+    }
 }

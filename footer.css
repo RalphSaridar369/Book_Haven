@@ -7,3 +7,19 @@
     position:absolute;
     bottom:100px;
 }
+
+
+.footer_container_2{
+    display: none!important;
+}
+
+@media screen and (max-width: 1000px) {
+
+    .footer_container{
+        display: none!important;
+    }
+
+    .footer_container_2{
+        display: block!important;
+    }
+}

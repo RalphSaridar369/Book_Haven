@@ -1,0 +1,9 @@
+.footer_container{
+    background-color: rgba(162.264, 246.263, 121.88, 1)!important;
+    display: flex;
+    flex-direction: row!important;
+    align-items: center!important;
+    justify-content: space-between;
+    position:absolute;
+    bottom:100px;
+}

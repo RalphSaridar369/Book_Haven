@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./home.css">
     <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="./home.css">
     <link rel="stylesheet" href="../header.css">
+    <link rel="stylesheet" href="../footer.css">
     <title>BookHaven</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,6 +54,8 @@
                 <span>Quality A Books</span>
             </div>
         </div>
+    </div>
+    <img src="../images/wave-2.png" class="hero_wave_2" />
 </body>
 
 </html>

@@ -22,6 +22,26 @@
 
             }, 1000)
         }
+
+        function handleMenu() {
+            console.log('test')
+            let menu = document.getElementById('menu_shown_not_shown').classList.contains("menu_not_shown")
+            console.log(menu)
+            if (menu) {
+                menu = document.getElementById('menu_shown_not_shown')
+                menu.classList.add("menu_shown")
+                menu.classList.remove("menu_not_shown")
+                document.getElementsByClassName('burger_icon')[0].style.display = 'none';
+                document.getElementsByClassName('header_container_2')[0].style.display = 'flex-start';
+            } else {
+                menu = document.getElementById('menu_shown_not_shown')
+                menu.classList.add("menu_not_shown")
+                menu.classList.remove("menu_shown")
+                document.getElementsByClassName('burger_icon')[0].style.display = 'block';
+                document.getElementsByClassName('header_container_2')[0].style.display = 'center';
+
+            }
+        }
     </script>
 </head>
 
@@ -30,6 +50,7 @@
         <div class="hero_wrapper_1">
             <?php include("../components/header.php") ?>
         </div>
+
         <div class="hero_wrapper_2">
             <h3 id="heroText">“To learn to read is to light a fire; every syllable that is spelled out is a spark.” ― Victor Hugo</h3>
             <img src="../images/hero.png" alt="hero1" class="hero_image_1">

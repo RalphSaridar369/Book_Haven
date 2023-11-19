@@ -25,6 +25,7 @@
     padding-left:30px!important;
     bottom: 0;
     background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(230, 255, 215, 1) 50%, rgba(162.264, 246.263, 121.88, 1) 100%);
+    box-shadow: -5px 0 10px rgba(230, 255, 215, 0.8);
     right:0;
     width: 30vw;
     height: 100%;

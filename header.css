@@ -20,7 +20,6 @@
 
 
 .menu_shown{
-    display: block!important;
     position:fixed;
     padding-left:30px!important;
     bottom: 0;
@@ -31,14 +30,21 @@
     height: 100%;
     z-index: 2;
     border-radius: 10px 0px 0px 10px;
+    animation: slideInFromRight 0.5s ease-in forwards;
 }
 
 .menu_not_shown{
-    display: none;
-    height:100vw;
+    position:fixed;
+    padding-left:30px!important;
+    bottom: 0;
+    right:-300px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(230, 255, 215, 1) 50%, rgba(162.264, 246.263, 121.88, 1) 100%);
+    box-shadow: -5px 0 10px rgba(230, 255, 215, 0.8);
     width: 30vw;
-    position:absolute;
-    right:0;
+    height: 100%;
+    z-index: 2;
+    border-radius: 10px 0px 0px 10px;
+    animation: slideOutFromLeft 0.5s ease-in forwards;
 }
 
 @media screen and (max-width: 1000px) {
@@ -51,3 +57,25 @@
         display: flex!important;
     }
 }
+
+@keyframes slideInFromRight {
+    0% {
+      right: -300px;
+      display: none!important;
+    }
+    100% {
+      right: 0;
+      display: block!important;
+    }
+  }
+
+  @keyframes slideOutFromLeft {
+      0% {
+        right: 0;
+        display: block!important;
+      }
+      100% {
+        right: -300px;
+        display: none!important;
+      }
+    }

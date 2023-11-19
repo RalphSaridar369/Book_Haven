@@ -3,7 +3,7 @@
 
 <body>
     <div class="header_container">
-        <img src="../images/Logo.png" alt="logo" class="logo_image">
+        <img src="./images/Logo.png" alt="logo" class="logo_image">
         <div>
             <a href="/login.php">Login</a>
             <span style="color:white">|</span>
@@ -12,7 +12,7 @@
     </div>
 
     <div class="header_container_2">
-        <img src="../images/Logo.png" alt="logo" class="logo_image">
+        <img src="./images/Logo.png" alt="logo" class="logo_image">
         <div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="white" class="burger_icon" onclick="handleMenu()">
                 <path d="M0 0h24v24H0V0z" fill="none" />

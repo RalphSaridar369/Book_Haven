@@ -24,25 +24,50 @@
 
 .product_container{
     overflow-y: hidden!important;
+    position: relative;
     border-radius: 10px;
+    height: 100%;
+    width: 100%;
 }
 
 .product_container:hover{
     cursor: pointer;
 }
 
-
-
-.product_image{
-    width:100%;
-    height:100%;
+.product_container_details{
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 1.5s ease;
+    border-radius: 10px;
+    z-index: 1; 
+    display: flex;
+    flex-direction: column;
+    padding:20px 10px!important;
 }
 
-.fade-elements {
-    transition: opacity 1.5s ease; /* You can adjust the duration and timing function as needed */
-  }
+.product_title{
+    margin-bottom: 40px!important;
+    color: rgba(130.0, 197.0, 97.5, 1);;
 
-  .fade-elements-details {
-    opacity: 0;
-    transition: opacity 1.5s ease; /* You can adjust the duration and timing function as needed */
-  }
+}
+
+.product_container:hover .product_image {
+    opacity: 0.08!important;
+}
+
+.product_container:hover .product_container_details {
+    opacity: 1;
+    z-index: 2; 
+}
+
+.product_image{
+    object-fit: cover;
+    width:100%;
+    height:100%;
+    transition: opacity 1.5s ease; 
+}
+

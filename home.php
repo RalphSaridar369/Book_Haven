@@ -34,44 +34,18 @@
             }
         }
 
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     var fadeElements = document.querySelectorAll('.fade-elements');
-        //     var fadeElements2 = document.querySelectorAll('.fade-elements-details');
-
-        //     fadeElements.forEach(function(element) {
-        //         element.addEventListener('mouseenter', function() {
-        //             element.classList.remove('active');
-        //             element.classList.add('inactive');
-        //         });
-
-        //         element.addEventListener('mouseleave', function() {
-        //             element.classList.remove('inactive');
-        //             element.classList.add('active');
-        //         });
-        //     });
-
-        //     fadeElements2.forEach(function(element) {
-        //         element.addEventListener('mouseenter', function() {
-        //             element.classList.add('active');
-        //             element.classList.remove('inactive');
-        //         });
-
-        //         element.addEventListener('mouseleave', function() {
-        //             element.classList.add('inactive');
-        //             element.classList.remove('active');
-        //         });
-        //     });
-        // });
-
         function showDetails(element) {
-            element.style.opacity = '0';
+            element.style.opacity = '0.08';
+            console.log("show Details: ", element.nextElementSibling)
             element.nextElementSibling.style.opacity = '1';
+            element.nextElementSibling.style.zIndex = '12'; // You can adjust the z-index value as needed
         }
 
 
 
         function hideDetails(element) {
             element.style.opacity = '1';
+            console.log("hide Details: ", element.nextElementSibling)
             element.nextElementSibling.style.opacity = '0';
         }
     </script>
@@ -93,40 +67,55 @@
         for ($i = 0; $i < 5; $i++) {
             echo '
             <div class="product_container">
-                <img src="./images/booksForHome/1.jpg" class="product_image fade-elements" onmouseenter="showDetails(this)" onmouseleave="hideDetails(this)" />
-                <div class="fade-elements-details">
-                    <p style="color:red">test</p>
+                <img src="./images/booksForHome/1.jpg" class="product_image"  />
+                <div class="product_container_details">
+                    <h2 class="product_title">The Stranger</h2>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam aut inventore accusamus provident asperiores? 
+                    </p>
                 </div>
             </div>
             <div class="product_container">
-                <img src="./images/booksForHome/2.jpg" class="product_image fade-elements" onmouseenter="showDetails(this)" onmouseleave="hideDetails(this)" />
-                <div class="fade-elements-details">
-                    <p style="color:red">test</p>
+                <img src="./images/booksForHome/2.jpg" class="product_image"  />
+                <div class="product_container_details">
+                    <h2 class="product_title">Title</h2>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam aut inventore accusamus provident asperiores? 
+                    </p>
                 </div>
             </div>
             <div class="product_container">
-                <img src="./images/booksForHome/3.jpg" class="product_image fade-elements" onmouseenter="showDetails(this)" onmouseleave="hideDetails(this)" />
-                <div class="fade-elements-details">
-                    <p style="color:red">test</p>
+                <img src="./images/booksForHome/3.jpg" class="product_image"  />
+                <div class="product_container_details">
+                    <h2 class="product_title">Title</h2>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam aut inventore accusamus provident asperiores? 
+                    </p>
                 </div>
             </div>
             <div class="product_container">
-                <img src="./images/booksForHome/4.jpg" class="product_image fade-elements" onmouseenter="showDetails(this)" onmouseleave="hideDetails(this)" />
-                <div class="fade-elements-details">
-                    <p style="color:red">test</p>
+                <img src="./images/booksForHome/4.jpg" class="product_image"  />
+                <div class="product_container_details">
+                    <h2 class="product_title">Title</h2>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam aut inventore accusamus provident asperiores? 
+                    </p>
                 </div>
             </div>
             <div class="product_container">
-                <img src="./images/booksForHome/5.jpg" class="product_image fade-elements" onmouseenter="showDetails(this)" onmouseleave="hideDetails(this)" />
-                <div class="fade-elements-details">
-                    <p style="color:red">test</p>
+                <img src="./images/booksForHome/5.jpg" class="product_image"  />
+                <div class="product_container_details">
+                    <h2 class="product_title">Title</h2>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam aut inventore accusamus provident asperiores? 
+                    </p>
                 </div>
             </div>';
         }
         ?>
     </div>
 
-    <img src="./images/wave-2.png" class="hero_wave_2" />
+    <img src="./images/wave-2.png" class="hero_wave_2" on />
 </body>
 
 </html>

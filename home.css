@@ -35,6 +35,7 @@
 }
 
 .product_container_details{
+    color:black!important;
     opacity: 0;
     position: absolute;
     top: 0;
@@ -53,6 +54,11 @@
     margin-bottom: 40px!important;
     color: rgba(130.0, 197.0, 97.5, 1);;
 
+}
+
+.product_price{
+    font-size: 20px!important;
+    margin-top: 40px!important;
 }
 
 .product_container:hover .product_image {

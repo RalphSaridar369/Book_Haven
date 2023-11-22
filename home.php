@@ -68,48 +68,63 @@
             echo '
             <div class="product_container">
                 <img src="./images/booksForHome/1.jpg" class="product_image"  />
-                <div class="product_container_details">
+                <a class="product_container_details" href="./bookDetails.php">
                     <h2 class="product_title">The Stranger</h2>
                     <p>
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam aut inventore accusamus provident asperiores? 
                     </p>
-                </div>
+                    <p class="product_price">
+                        $9.00
+                    </p>
+                </a>
             </div>
             <div class="product_container">
                 <img src="./images/booksForHome/2.jpg" class="product_image"  />
-                <div class="product_container_details">
+                <a class="product_container_details" href="./bookDetails.php">
                     <h2 class="product_title">Title</h2>
                     <p>
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam aut inventore accusamus provident asperiores? 
                     </p>
-                </div>
+                    <p class="product_price">
+                        $9.00
+                    </p>
+                </a>
             </div>
             <div class="product_container">
                 <img src="./images/booksForHome/3.jpg" class="product_image"  />
-                <div class="product_container_details">
+                <a class="product_container_details" href="./bookDetails.php">
                     <h2 class="product_title">Title</h2>
                     <p>
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam aut inventore accusamus provident asperiores? 
                     </p>
-                </div>
+                    <p class="product_price">
+                        $9.00
+                    </p>
+                </a>
             </div>
             <div class="product_container">
                 <img src="./images/booksForHome/4.jpg" class="product_image"  />
-                <div class="product_container_details">
+                <a class="product_container_details" href="./bookDetails.php">
                     <h2 class="product_title">Title</h2>
                     <p>
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam aut inventore accusamus provident asperiores? 
                     </p>
-                </div>
+                    <p class="product_price">
+                        $9.00
+                    </p>
+                </a>
             </div>
             <div class="product_container">
                 <img src="./images/booksForHome/5.jpg" class="product_image"  />
-                <div class="product_container_details">
+                <a class="product_container_details" href="./bookDetails.php">
                     <h2 class="product_title">Title</h2>
                     <p>
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam aut inventore accusamus provident asperiores? 
                     </p>
-                </div>
+                    <p class="product_price">
+                        $9.00
+                    </p>
+                </a>
             </div>';
         }
         ?>

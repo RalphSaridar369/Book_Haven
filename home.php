@@ -70,6 +70,11 @@
                 <img src="./images/booksForHome/1.jpg" class="product_image"  />
                 <a class="product_container_details" href="./bookDetails.php">
                     <h2 class="product_title">The Stranger</h2>
+                    <h4>
+                        Genre: Psychology <br />
+                        Date: 1971<br />
+                        Author: Albert Camus<br /><br /><br />
+                    </h4>
                     <p>
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam aut inventore accusamus provident asperiores? 
                     </p>
@@ -82,6 +87,11 @@
                 <img src="./images/booksForHome/2.jpg" class="product_image"  />
                 <a class="product_container_details" href="./bookDetails.php">
                     <h2 class="product_title">Title</h2>
+                    <h4>
+                        Genre: Psychology <br />
+                        Date: 1971<br />
+                        Author: Albert Camus<br /><br /><br />
+                    </h4>
                     <p>
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam aut inventore accusamus provident asperiores? 
                     </p>
@@ -94,6 +104,11 @@
                 <img src="./images/booksForHome/3.jpg" class="product_image"  />
                 <a class="product_container_details" href="./bookDetails.php">
                     <h2 class="product_title">Title</h2>
+                    <h4>
+                        Genre: Psychology <br />
+                        Date: 1971<br />
+                        Author: Albert Camus<br /><br /><br />
+                    </h4>
                     <p>
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam aut inventore accusamus provident asperiores? 
                     </p>
@@ -106,6 +121,11 @@
                 <img src="./images/booksForHome/4.jpg" class="product_image"  />
                 <a class="product_container_details" href="./bookDetails.php">
                     <h2 class="product_title">Title</h2>
+                    <h4>
+                        Genre: Psychology <br />
+                        Date: 1971<br />
+                        Author: Albert Camus<br /><br /><br />
+                    </h4>
                     <p>
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam aut inventore accusamus provident asperiores? 
                     </p>
@@ -118,6 +138,11 @@
                 <img src="./images/booksForHome/5.jpg" class="product_image"  />
                 <a class="product_container_details" href="./bookDetails.php">
                     <h2 class="product_title">Title</h2>
+                    <h4>
+                        Genre: Psychology <br />
+                        Date: 1971<br />
+                        Author: Albert Camus<br /><br /><br />
+                    </h4>
                     <p>
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam aut inventore accusamus provident asperiores? 
                     </p>

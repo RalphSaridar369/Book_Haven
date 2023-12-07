@@ -1,8 +1,12 @@
 <?php
-$mysqli = new mysqli("localhost", "my_user", "my_password", "my_db");
-
-// Check connection
-if ($mysqli->connect_errno) {
-    echo "Failed to connect to MySQL: " . $mysqli->connect_error;
-    exit();
+/////////////////////////////
+define("db_SERVER", "localhost:3308"); //define is used to declare constants
+define("db_USER", "root"); //wrong username put root1
+define("db_PASSWORD", "");
+define("db_DBNAME", "bookhaven");
+$con = mysqli_connect(db_SERVER, db_USER, db_PASSWORD, db_DBNAME);
+if (!$con) {
+    echo '<script type="text/javascript">
+ alert("Error connecting the server ' . mysqli_connect_error() . '<
+ /script>';
 }

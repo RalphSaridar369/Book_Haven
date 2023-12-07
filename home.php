@@ -62,112 +62,31 @@
         <?php include("./components/filterBar.php") ?>
     </div>
 
-    <?php
-    // include_once('./actions/connection.php');
-
-    // $result = mysqli_query($con, "Select * From book");
-    // if ($result) {
-    //     while ($row = mysqli_fetch_array($result)) {
-    //         echo "<tr > ";
-    //         echo "<td >" . $row['EmpID'] . "</td>";
-    //         echo "<td>" . $row['EmpName']  . "</td>";
-    //         echo "<td>"  . ($row['EmpSD'] == "0000-00-00" ? "N/A" : $row['EmpTD']) . "</td>";
-    //         echo "<td>" . ($row['EmpTD'] == "0000-00-00" ? "N/A" : $row['EmpTD']) . "</td>";
-    //         echo "<td>" . '$' . $row['Salary'] . "</td>";
-    //         echo "</tr>";
-    //     }
-    // }
-    ?>
-
     <div class="products_container">
         <?php
-        for ($i = 0; $i < 5; $i++) {
-            echo '
-            <div class="product_container">
-                <img src="./images/booksForHome/1.jpg" class="product_image"  />
-                <a class="product_container_details" href="./bookDetails.php">
-                    <h2 class="product_title">The Stranger</h2>
-                    <h4>
-                        Genre: Psychology <br />
-                        Date: 1971<br />
-                        Author: Albert Camus<br /><br /><br />
-                    </h4>
-                    <p>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam aut inventore accusamus provident asperiores? 
-                    </p>
-                    <p class="product_price">
-                        $9.00
-                    </p>
-                </a>
-            </div>
-            <div class="product_container">
-                <img src="./images/booksForHome/2.jpg" class="product_image"  />
-                <a class="product_container_details" href="./bookDetails.php">
-                    <h2 class="product_title">Title</h2>
-                    <h4>
-                        Genre: Psychology <br />
-                        Date: 1971<br />
-                        Author: Albert Camus<br /><br /><br />
-                    </h4>
-                    <p>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam aut inventore accusamus provident asperiores? 
-                    </p>
-                    <p class="product_price">
-                        $9.00
-                    </p>
-                </a>
-            </div>
-            <div class="product_container">
-                <img src="./images/booksForHome/3.jpg" class="product_image"  />
-                <a class="product_container_details" href="./bookDetails.php">
-                    <h2 class="product_title">Title</h2>
-                    <h4>
-                        Genre: Psychology <br />
-                        Date: 1971<br />
-                        Author: Albert Camus<br /><br /><br />
-                    </h4>
-                    <p>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam aut inventore accusamus provident asperiores? 
-                    </p>
-                    <p class="product_price">
-                        $9.00
-                    </p>
-                </a>
-            </div>
-            <div class="product_container">
-                <img src="./images/booksForHome/4.jpg" class="product_image"  />
-                <a class="product_container_details" href="./bookDetails.php">
-                    <h2 class="product_title">Title</h2>
-                    <h4>
-                        Genre: Psychology <br />
-                        Date: 1971<br />
-                        Author: Albert Camus<br /><br /><br />
-                    </h4>
-                    <p>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam aut inventore accusamus provident asperiores? 
-                    </p>
-                    <p class="product_price">
-                        $9.00
-                    </p>
-                </a>
-            </div>
-            <div class="product_container">
-                <img src="./images/booksForHome/5.jpg" class="product_image"  />
-                <a class="product_container_details" href="./bookDetails.php">
-                    <h2 class="product_title">Title</h2>
-                    <h4>
-                        Genre: Psychology <br />
-                        Date: 1971<br />
-                        Author: Albert Camus<br /><br /><br />
-                    </h4>
-                    <p>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam aut inventore accusamus provident asperiores? 
-                    </p>
-                    <p class="product_price">
-                        $9.00
-                    </p>
-                </a>
-            </div>';
+
+        include_once('./actions/connection.php');
+
+        $result = mysqli_query($con, "Select * From book");
+
+        if ($result) {
+            while ($row = mysqli_fetch_array($result)) {
+                echo '
+                <div class="product_container">
+                    <img src="./images/booksForHome/' . $row['Image_link'] . '" class="product_image"  />
+                    <a class="product_container_details" href="./bookDetails.php?id=' . $row['ID'] . '">
+                        <h2 class="product_title">' . $row['Title'] . '</h2>
+                        <h4>
+                            Genre: ' . $row['Genre'] . ' <br />
+                            Date: 1971<br />
+                            Author: ' . $row['Author'] . '<br /><br /><br />
+                        </h4>
+                        <p class="product_price">
+                            $' . $row['Price'] . '
+                        </p>
+                    </a>
+                </div>';
+            }
         }
         ?>
     </div>

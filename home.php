@@ -62,6 +62,23 @@
         <?php include("./components/filterBar.php") ?>
     </div>
 
+    <?php
+    // include_once('./actions/connection.php');
+
+    // $result = mysqli_query($con, "Select * From book");
+    // if ($result) {
+    //     while ($row = mysqli_fetch_array($result)) {
+    //         echo "<tr > ";
+    //         echo "<td >" . $row['EmpID'] . "</td>";
+    //         echo "<td>" . $row['EmpName']  . "</td>";
+    //         echo "<td>"  . ($row['EmpSD'] == "0000-00-00" ? "N/A" : $row['EmpTD']) . "</td>";
+    //         echo "<td>" . ($row['EmpTD'] == "0000-00-00" ? "N/A" : $row['EmpTD']) . "</td>";
+    //         echo "<td>" . '$' . $row['Salary'] . "</td>";
+    //         echo "</tr>";
+    //     }
+    // }
+    ?>
+
     <div class="products_container">
         <?php
         for ($i = 0; $i < 5; $i++) {

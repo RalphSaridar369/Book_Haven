@@ -42,6 +42,83 @@
         </div>
     </div>
 
+    <!-- getting line items for customer's cart -->
+    <?php
+
+    // include_once('./actions/connection.php');
+
+    // $result = mysqli_query($con, "Select * From book Where id = id");
+    // if ($result) {
+    //     while ($row = mysqli_fetch_array($result)) {
+    //         echo "<tr > ";
+    //         echo "<td >" . $row['EmpID'] . "</td>";
+    //         echo "<td>" . $row['EmpName']  . "</td>";
+    //         echo "<td>"  . ($row['EmpSD'] == "0000-00-00" ? "N/A" : $row['EmpTD']) . "</td>";
+    //         echo "<td>" . ($row['EmpTD'] == "0000-00-00" ? "N/A" : $row['EmpTD']) . "</td>";
+    //         echo "<td>" . '$' . $row['Salary'] . "</td>";
+    //         echo "</tr>";
+    //     }
+    // }
+    ?>
+
+    <!-- update line items for customer's cart -->
+    <?php
+
+    // if ($_POST['submit_quantity']) {
+    //     if (!isset($_POST['quantity']) || empty($_POST['quantity'])) {
+    //         echo '<script>alert("Please insert quantity");</script>';
+    //     } else {
+    //         $result = mysqli_query($con, "INSERT INTO employee(EmpName, EmpSD, EmpTD, Salary) 
+    //         Values ('$_POST[Ename]','$_POST[SDate]','$_POST[TDate]' ,'$_POST[Salary]')");
+
+    //         if (!$result) {
+    //             echo '<script>alert("Error while inserting book");</script>';
+    //         }
+    //     }
+    // }
+
+    ?>
+
+
+
+    <!-- delete line items for customer's cart -->
+    <?php
+
+    // if ($_POST['submit_quantity']) {
+    //     if (!isset($_POST['quantity']) || empty($_POST['quantity'])) {
+    //         echo '<script>alert("Please insert quantity");</script>';
+    //     } else {
+    //         $result = mysqli_query($con, "INSERT INTO employee(EmpName, EmpSD, EmpTD, Salary) 
+    //         Values ('$_POST[Ename]','$_POST[SDate]','$_POST[TDate]' ,'$_POST[Salary]')");
+
+    //         if (!$result) {
+    //             echo '<script>alert("Error while inserting book");</script>';
+    //         }
+    //     }
+    // }
+
+    ?>
+
+
+
+    <!-- checkout cart and create order -->
+    <?php
+    // if ($_POST['submit_quantity']) {
+    //     if (!isset($_POST['quantity']) || empty($_POST['quantity'])) {
+    //         echo '<script>alert("Please insert quantity");</script>';
+    //     } else {
+    //         $result = mysqli_query($con, "INSERT INTO employee(EmpName, EmpSD, EmpTD, Salary) 
+    //         Values ('$_POST[Ename]','$_POST[SDate]','$_POST[TDate]' ,'$_POST[Salary]')");
+
+    //         if (!$result) {
+    //             echo '<script>alert("Error while inserting book");</script>';
+    //         }
+    //     }
+    // }
+    ?>
+
+
+
     <div class="checkout_container">
         <form class="left_checkout_container" method="POST">
             <input type="text" placeholder="First Name" name="first_name" />

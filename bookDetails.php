@@ -34,6 +34,13 @@
 
             }
         }
+
+        function changeTotal(element) {
+            const price_element = document.getElementById('price_text')
+            const price = parseFloat(price_element.innerText.split('$')[1])
+            const total_element = document.getElementById('total_text')
+            total_element.innerText = "Total: $" + element.value * price + ".00"
+        }
     </script>
 </head>
 
@@ -43,6 +50,41 @@
             <?php include("./components/header.php") ?>
         </div>
     </div>
+
+    <!-- getting book details -->
+    <?php
+    // include_once('./actions/connection.php');
+
+    // $result = mysqli_query($con, "Select * From book Where id = id");
+    // if ($result) {
+    //     while ($row = mysqli_fetch_array($result)) {
+    //         echo "<tr > ";
+    //         echo "<td >" . $row['EmpID'] . "</td>";
+    //         echo "<td>" . $row['EmpName']  . "</td>";
+    //         echo "<td>"  . ($row['EmpSD'] == "0000-00-00" ? "N/A" : $row['EmpTD']) . "</td>";
+    //         echo "<td>" . ($row['EmpTD'] == "0000-00-00" ? "N/A" : $row['EmpTD']) . "</td>";
+    //         echo "<td>" . '$' . $row['Salary'] . "</td>";
+    //         echo "</tr>";
+    //     }
+    // }
+    ?>
+
+
+    <!-- adding books as line_items to cart -->
+    <?php
+    // if ($_POST['submit_quantity']) {
+    //     if (!isset($_POST['quantity']) || empty($_POST['quantity'])) {
+    //         echo '<script>alert("Please insert quantity");</script>';
+    //     } else {
+    //         $result = mysqli_query($con, "INSERT INTO employee(EmpName, EmpSD, EmpTD, Salary) 
+    //         Values ('$_POST[Ename]','$_POST[SDate]','$_POST[TDate]' ,'$_POST[Salary]')");
+
+    //         if (!$result) {
+    //             echo '<script>alert("Error while inserting book");</script>';
+    //         }
+    //     }
+    // }
+    ?>
 
     <div class="book_container">
         <div class="book_image_container">
@@ -59,9 +101,10 @@
             </div>
         </div>
         <form class="add_to_cart_container">
-            <h2>Price: $9.00 &nbsp;&nbsp;&nbsp;&nbsp; Total: $18.00</h2>
-            <input type="number" placeholder="quantity" name="quantity" class="quantity_input" />
-            <input type="submit" name="submit" class="quantity_submit" />
+            <h2 id='price_text'>Price: $9.00 </h2>
+            <h2 id="total_text"> Total: $18.00</h2>
+            <input type="number" placeholder="quantity" name="quantity" class="quantity_input" onchange="changeTotal(this)" oninput="changeTotal(this)" />
+            <input type="submit" name="submit_quantity" class="quantity_submit" />
         </form>
     </div>
     <div class="description_container">

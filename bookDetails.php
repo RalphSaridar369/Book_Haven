@@ -54,7 +54,7 @@
     <!-- add to cart -->
     <!-- need to change values to become dynamic -->
     <?php
-    if (isset($_POST['submit_quantity']) && strlen($_POST['quantity']) > 0) {
+    if (isset($_POST['submit_quantity'])) {
         if (empty($_POST['quantity'])) {
             echo '<script>alert("Please insert quantity");</script>';
         } else {
@@ -67,22 +67,27 @@
                 $userEmail = 'user@hotmail.com';
 
                 //checking if exists already
-                $lineItemId = mysqli_real_escape_string($con, $_GET['id']);
+                $bookId = mysqli_real_escape_string($con, $_GET['id']);
 
-                $sql = "SELECT * FROM user u JOIN line_item l ON u.ID = l.User_ID WHERE l.User_ID = 1 AND l.ID = '$lineItemId'";
+                $sql = "SELECT * FROM line_item l
+                        JOIN cart c ON l.Cart_ID = c.ID
+                        WHERE c.User_ID = 1 AND l.Order_ID IS NULL AND l.Book_ID = '$bookId'";
                 $lineItem = mysqli_query($con, $sql);
 
-                if ($lineItem) {
-                    $row = mysqli_fetch_assoc($cartQuery);
+                if ($lineItem && mysqli_num_rows($lineItem) > 0) {
+                    $row = mysqli_fetch_assoc($lineItem);
 
                     if ($row) {
                         //updating line item
-                        $lineItemId = mysqli_real_escape_string($con, $_GET['id']);
-                        $quantityToAdd = mysqli_real_escape_string($con, $_POST['quantity']);
+                        $quantityToAdd = intval(mysqli_real_escape_string($con, $_POST['quantity']));
 
-                        $sql = "UPDATE line_item SET Quantity = Quantity + $quantityToAdd WHERE ID = '$lineItemId' AND User_ID = 1";
+                        $sql = "UPDATE line_item SET Quantity = Quantity + $quantityToAdd WHERE ID = '{$row['ID']}'";
 
                         $result = mysqli_query($con, $sql);
+
+                        if ($result) {
+                            echo '<script>alert("Product quantity updated in cart");</script>';
+                        }
                     } else {
                         echo 'No matching row found.';
                     }
@@ -96,9 +101,10 @@
                         $link = mysqli_real_escape_string($con, $row['Image_link']);
                         $quantity = mysqli_real_escape_string($con, $_POST['quantity']);
                         $cartId = mysqli_real_escape_string($con, $cart['ID']);
+                        $bookId = mysqli_real_escape_string($con, $_GET['id']);
 
-                        $result = mysqli_query($con, "INSERT INTO line_item (Title, Price, Quantity, Image_link, Cart_ID) 
-                        VALUES ('$title', '$price', '" . intval($quantity) . "', '$link', '$cartId')");
+                        $result = mysqli_query($con, "INSERT INTO line_item (Title, Price, Quantity, Image_link, Cart_ID, Book_ID) 
+                        VALUES ('$title', '$price', '" . intval($quantity) . "', '$link', '$cartId', '$bookId')");
 
 
                         if (!$result) {
@@ -112,8 +118,6 @@
                 }
             }
         }
-    } else {
-        echo '<script>alert("Please insert quantity");</script>';
     }
     ?>
 

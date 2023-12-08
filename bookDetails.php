@@ -51,23 +51,70 @@
         </div>
     </div>
 
-
-
-
-    <!-- adding books as line_items to cart -->
+    <!-- add to cart -->
+    <!-- need to change values to become dynamic -->
     <?php
-    // if ($_POST['submit_quantity']) {
-    //     if (!isset($_POST['quantity']) || empty($_POST['quantity'])) {
-    //         echo '<script>alert("Please insert quantity");</script>';
-    //     } else {
-    //         $result = mysqli_query($con, "INSERT INTO employee(EmpName, EmpSD, EmpTD, Salary) 
-    //         Values ('$_POST[Ename]','$_POST[SDate]','$_POST[TDate]' ,'$_POST[Salary]')");
+    if (isset($_POST['submit_quantity']) && strlen($_POST['quantity']) > 0) {
+        if (empty($_POST['quantity'])) {
+            echo '<script>alert("Please insert quantity");</script>';
+        } else {
 
-    //         if (!$result) {
-    //             echo '<script>alert("Error while inserting book");</script>';
-    //         }
-    //     }
-    // }
+            include_once('./actions/connection.php');
+            $result = mysqli_query($con, "SELECT * FROM book WHERE id = " . $_GET['id']);
+            if ($result) {
+                $row = mysqli_fetch_assoc($result);
+                $quantity = mysqli_real_escape_string($con, $_POST['quantity']);
+                $userEmail = 'user@hotmail.com';
+
+                //checking if exists already
+                $lineItemId = mysqli_real_escape_string($con, $_GET['id']);
+
+                $sql = "SELECT * FROM user u JOIN line_item l ON u.ID = l.User_ID WHERE l.User_ID = 1 AND l.ID = '$lineItemId'";
+                $lineItem = mysqli_query($con, $sql);
+
+                if ($lineItem) {
+                    $row = mysqli_fetch_assoc($cartQuery);
+
+                    if ($row) {
+                        //updating line item
+                        $lineItemId = mysqli_real_escape_string($con, $_GET['id']);
+                        $quantityToAdd = mysqli_real_escape_string($con, $_POST['quantity']);
+
+                        $sql = "UPDATE line_item SET Quantity = Quantity + $quantityToAdd WHERE ID = '$lineItemId' AND User_ID = 1";
+
+                        $result = mysqli_query($con, $sql);
+                    } else {
+                        echo 'No matching row found.';
+                    }
+                } else {
+                    $cartQuery = mysqli_query($con, "SELECT * FROM cart c JOIN user u ON c.user_id = u.id WHERE c.ID = 1 AND u.Email = '$userEmail'");
+                    $cart = mysqli_fetch_assoc($cartQuery);
+
+                    if ($cart) {
+                        $title = mysqli_real_escape_string($con, $row['Title']);
+                        $price = mysqli_real_escape_string($con, $row['Price']);
+                        $link = mysqli_real_escape_string($con, $row['Image_link']);
+                        $quantity = mysqli_real_escape_string($con, $_POST['quantity']);
+                        $cartId = mysqli_real_escape_string($con, $cart['ID']);
+
+                        $result = mysqli_query($con, "INSERT INTO line_item (Title, Price, Quantity, Image_link, Cart_ID) 
+                        VALUES ('$title', '$price', '" . intval($quantity) . "', '$link', '$cartId')");
+
+
+                        if (!$result) {
+                            echo '<script>alert("Error while inserting book");</script>';
+                        } else {
+                            echo '<script>alert("Product added to cart");</script>';
+                        }
+                    } else {
+                        echo '<script>alert("Error: Cart not found for the specified user");</script>';
+                    }
+                }
+            }
+        }
+    } else {
+        echo '<script>alert("Please insert quantity");</script>';
+    }
     ?>
 
     <!-- getting book details -->
@@ -76,7 +123,9 @@
 
     $result = mysqli_query($con, "SELECT * FROM book WHERE id = " . $_GET['id']);
     if ($result) {
-        while ($row = mysqli_fetch_array($result)) {
+        $row = mysqli_fetch_assoc($result);
+
+        if ($row) {
             echo '          
           <div class="book_container">
             <div class="book_image_container">
@@ -92,8 +141,8 @@
                     <h4>Awards or Recognitions: ' . $row['Award'] . '</h4>
                 </div>
             </div>
-            <form class="add_to_cart_container">
-                <h2 id="price_text">Price: $' . $row['Price'] . ' </h2>
+            <form class="add_to_cart_container" method="POST">
+                <h2 id="price_text">Price: $' . number_format(floatval($row['Price']), 2) . ' </h2>
                 <h2 id="total_text"> Total: $0</h2>
                 <input type="number" placeholder="quantity" name="quantity" class="quantity_input" onchange="changeTotal(this)" oninput="changeTotal(this)" />
                 <input type="submit" name="submit_quantity" class="quantity_submit" />

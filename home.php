@@ -38,7 +38,7 @@
             element.style.opacity = '0.08';
             console.log("show Details: ", element.nextElementSibling)
             element.nextElementSibling.style.opacity = '1';
-            element.nextElementSibling.style.zIndex = '12'; // You can adjust the z-index value as needed
+            element.nextElementSibling.style.zIndex = '12';
         }
 
 

@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 07, 2023 at 04:05 PM
+-- Host: 127.0.0.1:3308
+-- Generation Time: Dec 08, 2023 at 02:11 AM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -45,7 +45,7 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`ID`, `Title`, `Description`, `Author`, `Date`, `Genre`, `Price`, `Page_Count`, `Award`, `Image_link`) VALUES
-(1, 'Lorem Ipsum', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p', 'John Doe', '2016-12-13', 'Horror', 100, 307, 'Best Writer', './assets/1.jpeg');
+(1, 'Lorem Ipsum', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p', 'John Doe', '2016-12-13', 'Horror', 100, 307, 'Best Writer', '1.jpg');
 
 -- --------------------------------------------------------
 
@@ -75,9 +75,22 @@ CREATE TABLE `line_item` (
   `ID` int(11) NOT NULL,
   `Title` varchar(200) NOT NULL,
   `Price` int(6) NOT NULL,
+  `Quantity` int(6) NOT NULL,
   `Image_link` varchar(500) NOT NULL,
-  `Cart_ID` int(11) NOT NULL
+  `Cart_ID` int(11) NOT NULL,
+  `Order_ID` int(11) DEFAULT NULL,
+  `Book_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `line_item`
+--
+
+INSERT INTO `line_item` (`ID`, `Title`, `Price`, `Quantity`, `Image_link`, `Cart_ID`, `Order_ID`, `Book_ID`) VALUES
+(1, 'Lorem Ipsum', 100, 100, './assets/1.jpeg', 1, NULL, 0),
+(2, 'Lorem Ipsum', 100, 1, '1.jpg', 1, NULL, 0),
+(3, 'Lorem Ipsum', 100, 1, '1.jpg', 1, NULL, 0),
+(4, 'Lorem Ipsum', 100, 1, '1.jpg', 1, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -138,7 +151,9 @@ ALTER TABLE `cart`
 --
 ALTER TABLE `line_item`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `Cart_ID_const` (`Cart_ID`);
+  ADD KEY `Cart_ID_const` (`Cart_ID`),
+  ADD KEY `Order_ID` (`Order_ID`) USING BTREE,
+  ADD KEY `Book_ID` (`Book_ID`);
 
 --
 -- Indexes for table `order`
@@ -174,7 +189,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `line_item`
 --
 ALTER TABLE `line_item`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `order`

@@ -42,24 +42,6 @@
         </div>
     </div>
 
-    <!-- getting line items for customer's cart -->
-    <?php
-
-    // include_once('./actions/connection.php');
-
-    // $result = mysqli_query($con, "Select * From book Where id = id");
-    // if ($result) {
-    //     while ($row = mysqli_fetch_array($result)) {
-    //         echo "<tr > ";
-    //         echo "<td >" . $row['EmpID'] . "</td>";
-    //         echo "<td>" . $row['EmpName']  . "</td>";
-    //         echo "<td>"  . ($row['EmpSD'] == "0000-00-00" ? "N/A" : $row['EmpTD']) . "</td>";
-    //         echo "<td>" . ($row['EmpTD'] == "0000-00-00" ? "N/A" : $row['EmpTD']) . "</td>";
-    //         echo "<td>" . '$' . $row['Salary'] . "</td>";
-    //         echo "</tr>";
-    //     }
-    // }
-    ?>
 
     <!-- update line items for customer's cart -->
     <?php
@@ -130,10 +112,21 @@
             <input type="submit" class="checkout_submit" />
         </form>
         <div class="right_checkout_container">
-            <div class="right_checkout_item">
-                <img src="./images/booksForHome/1.jpg" alt="image_book" />
-                <h3>Title</h3>
-            </div>
+            <!-- getting line items for customer's cart -->
+            <?php
+            include_once('./actions/connection.php');
+
+            $result = mysqli_query($con, "Select * From line_item l, cart c Where l.Order_ID IS NULL AND c.User_ID = 1 ");
+            if ($result) {
+                while ($row = mysqli_fetch_array($result)) {
+                    echo `
+                    <div class="right_checkout_item">
+                        <img src="./images/booksForHome/1.jpg" alt="image_book" />
+                        <h3>Title</h3>
+                    </div>`;
+                }
+            }
+            ?>
         </div>
     </div>
 

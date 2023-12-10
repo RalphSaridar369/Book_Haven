@@ -52,6 +52,7 @@
     border:1px rgba(162.264, 246.263, 121.88, 1) solid;
     border-radius: 10px;
     display: flex;
+    flex-direction: row;
     align-items: center;
     padding:0 20px!important;
     gap:10px;
@@ -157,4 +158,21 @@
 .total_text{
     margin-bottom: 20px!important;
     font-size: 28px!important;
+}
+
+.delete-icon{
+    margin-top: 5px!important;
+    width: 32px!important;
+    height: 32px!important;
+}
+
+.delete-icon:hover{
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 1000px) {
+    .checkout_container{
+        flex-direction: column-reverse;
+    }
 }

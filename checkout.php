@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Esteban&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script>
         function handleMenu() {
@@ -47,7 +48,7 @@
     <?php
 
     // if ($_POST['submit_quantity']) {
-    //     if (!isset($_POST['quantity']) || empty($_POST['quantity'])) {
+    //     if (empty($_POST['quantity']) || empty($_POST['quantity'])) {
     //         echo '<script>alert("Please insert quantity");</script>';
     //     } else {
     //         $result = mysqli_query($con, "INSERT INTO employee(EmpName, EmpSD, EmpTD, Salary) 
@@ -60,33 +61,12 @@
     // }
 
     ?>
-
-
-
-    <!-- delete line items for customer's cart -->
-    <?php
-
-    // if ($_POST['submit_quantity']) {
-    //     if (!isset($_POST['quantity']) || empty($_POST['quantity'])) {
-    //         echo '<script>alert("Please insert quantity");</script>';
-    //     } else {
-    //         $result = mysqli_query($con, "INSERT INTO employee(EmpName, EmpSD, EmpTD, Salary) 
-    //         Values ('$_POST[Ename]','$_POST[SDate]','$_POST[TDate]' ,'$_POST[Salary]')");
-
-    //         if (!$result) {
-    //             echo '<script>alert("Error while inserting book");</script>';
-    //         }
-    //     }
-    // }
-
-    ?>
-
 
 
     <!-- checkout cart and create order -->
     <?php
     if (isset($_POST['checkout_submit'])) {
-        if (!isset($_POST['first_name']) || !isset($_POST['last_name']) || !isset($_POST['city']) || !isset($_POST['address']) || !isset($_POST['street']) || !isset($_POST['phone_number'])) {
+        if (empty($_POST['first_name']) || empty($_POST['last_name']) || empty($_POST['city']) || empty($_POST['address']) || empty($_POST['street']) || empty($_POST['phone_number'])) {
             echo '<script>alert("Please fill all fields");</script>';
         } else {
             include_once('./actions/connection.php');
@@ -136,22 +116,23 @@
             <?php
             include_once('./actions/connection.php');
 
-            $result = mysqli_query($con, "Select * From line_item l, cart c Where l.Order_ID IS NULL AND c.User_ID = 1 ");
+            $result = mysqli_query($con, "Select l.ID, l.Title, l.Price, l.Quantity, l.Image_link  From line_item l, cart c Where l.Order_ID IS NULL AND c.User_ID = 1 ");
             $total = 0;
-            $items = array(); // Array to store items
+            $items = array();
 
             if ($result) {
                 while ($row = mysqli_fetch_array($result)) {
                     $total += ($row['Price'] * $row['Quantity']);
-                    $items[] = $row; // Store each row in the items array
+                    $items[] = $row;
                 }
             }
 
             echo '<h1 class="total_text">Total: $' . $total . '</h1>';
 
+            // id="checkout_item_div_' . $row["ID"] . '"
             foreach ($items as $row) {
                 echo '
-                    <div class="right_checkout_item">
+                    <div class="right_checkout_item" id=checkout-container-' . $row["ID"] . '>
                         <img src="./images/booksForHome/' . $row['Image_link'] . '" alt="image_book" />
                         <div class="right_checkout_item_first_container">
                             <h2>' . $row['Title'] . '</h2>
@@ -160,13 +141,51 @@
                                 <h4>&nbsp;x&nbsp;$' . $row['Price'] . '</h4>
                             </div>
                         </div>
-                        <h3 class="total_text_per_item">Total: $' . ($row['Price'] * $row['Quantity']) . '</h3>
+                        <div>
+                            <h3 class="total_text_per_item">Total: $' . ($row['Price'] * $row['Quantity']) . '</h3>
+                            <img src="./images/icons/delete.png" class="delete-icon" onClick="deleteLineItem(' . $row["ID"] . ',' . $row["Quantity"] * $row["Price"] . ')" alt="image_book" />
+                        </div>
                     </div>';
             }
             ?>
         </div>
     </div>
 
+    <script>
+        function deleteLineItem(id, totalValue) {
+            if (confirm("Are you sure you want to delete this item?")) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', `./actions/deleteLineItem.php`, true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onreadystatechange = function() {
+                    var elementToDelete = document.getElementById('checkout-container-' + id);
+                    var elementTotal = document.getElementsByClassName('total_text')[0]
+                    console.log(elementTotal)
+                    console.log(elementToDelete)
+                    console.log(elementToDelete.parentNode)
+                    if (elementToDelete) {
+                        elementToDelete.parentNode.removeChild(elementToDelete);
+                        const total = elementTotal.innerText.split('$')[1]
+                        elementTotal.innerText = "Total: $" + (parseInt(total) - totalValue)
+                        console.log(total)
+                    }
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+
+                            var response = JSON.parse(xhr.responseText);
+                            if (response.success) {
+                                alert("Done");
+                            } else {
+                                alert('Failed to delete item. Please try again.');
+                            }
+                        }
+                    }
+                };
+                xhr.send('id=' + id);
+            }
+        }
+    </script>
 </body>
+
 
 </html>

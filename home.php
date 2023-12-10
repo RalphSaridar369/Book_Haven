@@ -16,6 +16,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
 
     <script>
+        function submitForm() {
+            const search_text = document.getElementById('search_bar').value;;
+            window.location.href = `./home.php?q=${search_text}`;
+        }
+
         function handleMenu() {
             let menu = document.getElementById('menu_shown_not_shown').classList.contains("menu_not_shown")
             if (menu) {
@@ -51,7 +56,7 @@
     </script>
 </head>
 
-<body>
+<body style="width:100vw;">
     <div>
         <div class="header_wrapper">
             <?php include("./components/header.php") ?>
@@ -59,19 +64,30 @@
     </div>
 
     <div class="filter_wrapper">
-        <?php include("./components/filterBar.php") ?>
+        <form class="search_bar_container" method="GET" id="search_form">
+            <input type="text" placeholder="Search for a book..." id="search_bar" />
+            <div class="search_icon_container">
+                <img src="./images/icons/search.png" alt="search-icon" onclick="submitForm()" />
+            </div>
+        </form>
     </div>
 
     <div class="products_container">
         <?php
 
         include_once('./actions/connection.php');
+        $result;
+        if (isset($_GET['q']) && !empty($_GET['q'])) {
+            $query = $_GET['q'];
+            $result = mysqli_query($con, "SELECT * FROM book WHERE Title LIKE '%$query%'");
+        } else {
+            $result = mysqli_query($con, "SELECT * FROM book");
+        }
 
-        $result = mysqli_query($con, "Select * From book");
-
-        if ($result) {
-            while ($row = mysqli_fetch_array($result)) {
-                echo '
+        if (mysqli_num_rows($result) > 0)
+            if ($result) {
+                while ($row = mysqli_fetch_array($result)) {
+                    echo '
                 <div class="product_container">
                     <img src="./images/booksForHome/' . $row['Image_link'] . '" class="product_image"  />
                     <a class="product_container_details" href="./bookDetails.php?id=' . $row['ID'] . '">
@@ -86,12 +102,11 @@
                         </p>
                     </a>
                 </div>';
-            }
-        }
+                }
+            } else
+                echo '<h2>No Books Found</h2>';
         ?>
     </div>
-
-    <img src="./images/wave-2.png" class="hero_wave_2" on />
 </body>
 
 </html>

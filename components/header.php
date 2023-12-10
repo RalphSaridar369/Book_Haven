@@ -3,16 +3,30 @@
 
 <body>
     <div class="header_container">
-        <img src="./images/Logo.png" alt="logo" class="logo_image">
+        <a href="./home.php">
+            <img src="./images/Logo.png" alt="logo" class="logo_image">
+        </a>
         <div>
-            <a href="/login.php">Login</a>
-            <span style="color:white">|</span>
-            <a href="/register.php">Register</a>
+            <?php if (isset($_SESSION['email'])) {
+                echo '
+                Logged In as 
+                <a href="/home.php">Home</a>
+                <a href="/checkout.php">My Cart</a>
+                <a href="/checkout.php">Logout</a>';
+            } else {
+                echo '
+                <a href="/login.php">Login</a>
+                <span style="color:white">|</span>
+                <a href="/register.php">Register</a>';
+            }
+            ?>
         </div>
     </div>
 
     <div class="header_container_2">
-        <img src="./images/Logo.png" alt="logo" class="logo_image">
+        <a href="./home.php">
+            <img src="./images/Logo.png" alt="logo" class="logo_image">
+        </a>
         <div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="white" class="burger_icon" onclick="handleMenu()">
                 <path d="M0 0h24v24H0V0z" fill="none" />
@@ -26,8 +40,19 @@
                 <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" />
             </svg>
             <br /><br /><br />
-            <a href="/login.php">Login</a><br /><br />
-            <a href="/register.php">Register</a>
+            <?php if (isset($_SESSION['email'])) {
+                echo '
+                Logged In as 
+                <a href="/home.php">Home</a><br /><br />
+                <a href="/checkout.php">My Cart</a><br /><br />
+                <a href="/checkout.php">Logout</a>';
+            } else {
+                echo '
+                <a href="/login.php">Login</a><br /><br />
+                <span style="color:white">|</span><br /><br />
+                <a href="/register.php">Register</a>';
+            }
+            ?>
         </div>
     </div>
 </body>

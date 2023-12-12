@@ -10,14 +10,14 @@
             <?php if (isset($_SESSION['email'])) {
                 echo '
                 Logged In as 
-                <a href="/home.php">Home</a>
-                <a href="/checkout.php">My Cart</a>
-                <a href="/checkout.php">Logout</a>';
+                <a href="./home.php">Home</a>
+                <a href="./checkout.php">My Cart</a>
+                <a href="./checkout.php">Logout</a>';
             } else {
                 echo '
-                <a href="/login.php">Login</a>
+                <a href="./login.php">Login</a>
                 <span style="color:white">|</span>
-                <a href="/register.php">Register</a>';
+                <a href="./register.php">Register</a>';
             }
             ?>
         </div>
@@ -43,14 +43,14 @@
             <?php if (isset($_SESSION['email'])) {
                 echo '
                 Logged In as 
-                <a href="/home.php">Home</a><br /><br />
-                <a href="/checkout.php">My Cart</a><br /><br />
-                <a href="/checkout.php">Logout</a>';
+                <a href="./home.php">Home</a><br /><br />
+                <a href="./checkout.php">My Cart</a><br /><br />
+                <a href="./checkout.php">Logout</a>';
             } else {
                 echo '
-                <a href="/login.php">Login</a><br /><br />
+                <a href="./login.php">Login</a><br /><br />
                 <span style="color:white">|</span><br /><br />
-                <a href="/register.php">Register</a>';
+                <a href="./register.php">Register</a>';
             }
             ?>
         </div>

@@ -10,14 +10,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-GLhlTQ8iN17SKgyRUxZNl+Uu7anh2U6zfeqVrO8C6q8x0n2tOr/zmZKUfH5O5f5y" crossorigin="anonymous">
     <link rel="stylesheet" href="./stylelogin.css">
-    <title>Bootstrap 4 Login/Register Form</title> 
+    <title>BookHaven</title> 
 </head>
 <body>
     <div id="logreg-forms">
         <form class="form-signin">
-            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
+            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Sign in</h1>
             
            
             <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
@@ -42,8 +42,6 @@
                 
             <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign Up</h1>
 
-                <input type="text" id="user-name" class="form-control" placeholder="Full name" required="" autofocus="">
-                <br>
                 <input type="email" id="user-email" class="form-control" placeholder="Email address" required autofocus="">
                 <br>
                 <input type="password" id="user-pass" class="form-control" placeholder="Password" required autofocus="">

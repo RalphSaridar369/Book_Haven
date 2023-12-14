@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
+    header('Location: login.php');
+    exit();
+}
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,26 +49,6 @@
             <?php include("./components/header.php") ?>
         </div>
     </div>
-
-
-    <!-- update line items for customer's cart -->
-    <?php
-
-    // if ($_POST['submit_quantity']) {
-    //     if (empty($_POST['quantity']) || empty($_POST['quantity'])) {
-    //         echo '<script>alert("Please insert quantity");</script>';
-    //     } else {
-    //         $result = mysqli_query($con, "INSERT INTO employee(EmpName, EmpSD, EmpTD, Salary) 
-    //         Values ('$_POST[Ename]','$_POST[SDate]','$_POST[TDate]' ,'$_POST[Salary]')");
-
-    //         if (!$result) {
-    //             echo '<script>alert("Error while inserting book");</script>';
-    //         }
-    //     }
-    // }
-
-    ?>
-
 
     <!-- checkout cart and create order -->
     <?php

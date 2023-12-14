@@ -70,8 +70,11 @@ body  {
 
 
 #logreg-forms button[type="submit"]{ 
-    background-color: #a2f67a;
-    margin-top:10px; }
+    background-color:rgba(162.264, 246.263, 121.88, 1)!important;
+    border-color:rgba(162.264, 246.263, 121.88, 1)!important;
+    outline-color:rgba(162.264, 246.263, 121.88, 1)!important;
+    margin-top:10px;
+}
 
 
 #logreg-forms .form-reset, #logreg-forms .form-signup{ display: none; }

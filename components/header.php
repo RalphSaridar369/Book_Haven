@@ -7,12 +7,15 @@
             <img src="./images/Logo.png" alt="logo" class="logo_image">
         </a>
         <div>
-            <?php if (isset($_SESSION['email'])) {
+            <?php
+            session_start();
+            if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
                 echo '
-                Logged In as 
-                <a href="./home.php">Home</a>
-                <a href="./checkout.php">My Cart</a>
-                <a href="./checkout.php">Logout</a>';
+                <div style="display:flex;gap:40px;">
+                    <a href="./home.php">Home</a>
+                    <a href="./checkout.php">My Cart</a>
+                    <a href="./checkout.php">Logout</a>
+                </div>';
             } else {
                 echo '
                 <a href="./login.php">Login</a>
@@ -40,9 +43,9 @@
                 <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" />
             </svg>
             <br /><br /><br />
-            <?php if (isset($_SESSION['email'])) {
+            <?php
+            if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
                 echo '
-                Logged In as 
                 <a href="./home.php">Home</a><br /><br />
                 <a href="./checkout.php">My Cart</a><br /><br />
                 <a href="./checkout.php">Logout</a>';

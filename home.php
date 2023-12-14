@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php
-if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
+if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
     header('Location: login.php');
     exit();
 }
@@ -21,6 +21,7 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script>
         function submitForm() {
@@ -95,20 +96,20 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
             if ($result) {
                 while ($row = mysqli_fetch_array($result)) {
                     echo '
-                <div class="product_container">
-                    <img src="./images/booksForHome/' . $row['Image_link'] . '" class="product_image"  />
-                    <a class="product_container_details" href="./bookDetails.php?id=' . $row['ID'] . '">
-                        <h2 class="product_title">' . $row['Title'] . '</h2>
-                        <h4>
-                            Genre: ' . $row['Genre'] . ' <br />
-                            Date: 1971<br />
-                            Author: ' . $row['Author'] . '<br /><br /><br />
-                        </h4>
-                        <p class="product_price">
-                            $' . $row['Price'] . '
-                        </p>
-                    </a>
-                </div>';
+                    <div class="product_container">
+                        <img src="./images/booksForHome/' . $row['Image_link'] . '" class="product_image"  />
+                        <a class="product_container_details" href="./bookDetails.php?id=' . $row['ID'] . '">
+                            <h2 class="product_title">' . $row['Title'] . '</h2>
+                            <h4>
+                                Genre: ' . $row['Genre'] . ' <br />
+                                Date: 1971<br />
+                                Author: ' . $row['Author'] . '<br /><br /><br />
+                            </h4>
+                            <p class="product_price">
+                                $' . $row['Price'] . '
+                            </p>
+                        </a>
+                    </div>';
                 }
             } else
                 echo '<h2>No Books Found</h2>';

@@ -59,7 +59,6 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
     <script src="./script.js"></script>
 
     <?php
-    session_start();
 
     if (isset($_POST['submit-login'])) {
         if (empty($_POST['inputEmail']) || empty($_POST['inputPassword'])) {
@@ -71,7 +70,7 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
             $password = $_POST['inputPassword'];
 
             $email = mysqli_real_escape_string($con, $email);
-            $password = mysqli_real_escape_string($con, $password);
+            $password = md5(mysqli_real_escape_string($con, $password));
 
             $check_login = "SELECT * FROM user WHERE Email = '$email' AND Password = '$password'";
             $user_query = mysqli_query($con, $check_login);
@@ -80,6 +79,7 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
                 $user = mysqli_fetch_assoc($user_query);
 
                 if ($user) {
+                    session_start();
                     $_SESSION['id'] = $user['ID'];
                     $_SESSION['email'] = $user['Email'];
                     header('Location: home.php');

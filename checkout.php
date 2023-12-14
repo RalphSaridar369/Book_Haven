@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <?php
-if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
+if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
     header('Location: login.php');
     exit();
 }

@@ -77,12 +77,12 @@ $(()=>{
                 include_once('./actions/connection.php');
 
                 $email = $_POST['inputEmail'];
-                $password = $_POST['inputPassword'];
+                $password = md5($_POST['inputPassword']);
 
                 //checking if user exists
                 $query = "SELECT * FROM user WHERE email = '.$email.'";
-                $exists = mysqli_num_rows(mysqli_query($con, $query));
-
+                $user_query = mysqli_query($con, $query);
+                $exists = mysqli_num_rows($user_query);
                 if ($exists > 0) {
                     echo '<script>alert("Email already exists")</script>';
                 } else {

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <body>
     <div class="header_container">
@@ -14,7 +15,7 @@
                 <div style="display:flex;gap:40px;">
                     <a href="./home.php">Home</a>
                     <a href="./checkout.php">My Cart</a>
-                    <a href="./checkout.php">Logout</a>
+                    <p id="logout" style="color:white">Logout</p>
                 </div>';
             } else {
                 echo '
@@ -48,7 +49,7 @@
                 echo '
                 <a href="./home.php">Home</a><br /><br />
                 <a href="./checkout.php">My Cart</a><br /><br />
-                <a href="./checkout.php">Logout</a>';
+                <p id="logout" style="color:white">Logout</p>';
             } else {
                 echo '
                 <a href="./login.php">Login</a><br /><br />
@@ -58,6 +59,34 @@
             ?>
         </div>
     </div>
+
 </body>
+<script>
+    $(document).ready(function() {
+        // Handle logout click
+        $('#logout').on('click', function(e) {
+            console.log("first")
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: './actions/logout.php',
+                data: {
+                    logout: true
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        window.location.href = 'login.php';
+                    } else {
+                        console.log(response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+</script>
 
 </html>

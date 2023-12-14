@@ -16,30 +16,21 @@
 </head>
 <body>
     <div id="logreg-forms">
-        <form class="form-signin" method="POST">
-            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Sign in</h1>
-            
-           
-            <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-            <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required="">
-            
-            <button name="submit-login" class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button>
-            <a href="#" id="forgot_pswd">Forgot password?</a>
-            <hr>
-            <!-- <p>Don't have an account!</p>  -->
-            <button class="btn btn-primary btn-block" type="button" id="btn-signup">
-            <a href="register.php">
-                <i class="fas fa-user-plus"></i> Sign up New Account</button>
-            </a>
-            </form>
+        <form method="POST">
+                
+                
+            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign Up</h1>
 
-            <form action="/reset/password/" class="form-reset">
-            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Reset Password</h1>
-                <input type="email" id="resetEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-                <button class="btn btn-primary btn-block" type="submit">Reset Password</button>
-                <a href="#" id="cancel_reset"><i class="fas fa-angle-left"></i> Back</a>
+                <input type="email" id="user-email" class="form-control" name="inputEmail" placeholder="Email address" required autofocus="">
+                <br>
+                <input type="password" id="user-pass" class="form-control" name="inputPassword" placeholder="Password" required autofocus="">
+                <br>
+                <input type="password" id="user-repeatpass" class="form-control" name="inputRepeatPassword" placeholder="Repeat Password" required autofocus="">
+
+                <button class="btn btn-primary btn-block" type="submit" name="submit-signup"><i class="fas fa-user-plus"></i> Sign Up</button>
+                <a href="login.php" > Back</a>
             </form>
-            
+            <br>
             
     </div>
     <p style="text-align:center">
@@ -68,28 +59,35 @@ $(()=>{
     <script src="./script.js"></script>
 
     <?php
-        if(isset($_POST['submit-login'])){
-            if(empty($_POST['inputEmail']) || empty($_POST['inputPassword'])){
+        if(isset($_POST['submit-signup'])){
+            if(empty($_POST['inputEmail']) || empty($_POST['inputPassword']) || empty($_POST['inputRepeatPassword'])){
                 echo '<script>alert("Please fill all inputs")</script>';    
             }
         }
         else{
-            include_once('./actions/connection.php');
+            if($_POST['inputPassword'] !== $_POST['inputRepeatPassword']){
+                echo '<script>alert("Passwords fields don\'t match")</script>';    
+            } else {
+                include_once('./actions/connection.php');
 
-            $email = $_POST['inputEmail'];
-            $password = $_POST['inputPassword'];
+                $email = $_POST['inputEmail'];
+                $password = $_POST['inputPassword'];
 
-            $check_login = "SELECT * FROM user WHERE email = '.$email.' AND password = '.$password.'";
-            $is_valid = mysqli_num_rows(mysqli_query($check_login));
+                //checking if user exists
+                $query = "SELECT * FROM user WHERE email = '.$email.'";
+                $exists = mysqli_num_rows(mysqli_query($query));
 
-            if($is_valid > 0){
-                     
-            }
-            else{
-                echo '<script>alert("Incorrect email or password")</script>';    
+                if($exists > 0){
+                    echo '<script>alert("Email already exists")</script>';    
+                }
+                else{
+                    $query = "INSERT INTO user(email, password) VALUES('.$email.','.$password.')";
+                    if(mysqli_query($query)){
+                        echo '<script>alert("User registered successfully")</script>';    
+                    }
+                }
             }
         }
     ?>
-
 </body>
 </html>

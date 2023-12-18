@@ -35,6 +35,7 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
             <button name="submit-login" class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button>
             <a href="#" id="forgot_pswd">Forgot password?</a>
             <hr>
+
             <!-- <p>Don't have an account!</p>  -->
             <button class="btn btn-primary btn-block" type="button">
                 <a href="register.php" style="color:white;text-decoration:none;text-align:center;">
@@ -43,10 +44,10 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
             </button>
         </form>
 
-        <form action="/reset/password/" class="form-reset">
+        <form method="POST" class="form-reset">
             <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Reset Password</h1>
             <input type="email" id="resetEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-            <button class="btn btn-primary btn-block" type="submit">Reset Password</button>
+            <button name="submit-reset" class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Reset Password</button>
             <a href="#" id="cancel_reset"><i class="fas fa-angle-left"></i> Back</a>
         </form>
 
@@ -94,6 +95,81 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
         }
     }
     ?>
+
+
+    <?php
+    function generateRandomNumber()
+    {
+        return rand(100000, 999999);
+    }
+
+    if (isset($_POST['submit-reset']) && isset($_POST['inputEmail'])) {
+        include_once('./actions/connection.php');
+
+        $email = trim($_POST['inputEmail']);
+        $email = mysqli_real_escape_string($con, $email);
+
+        $check_user = "SELECT * FROM user WHERE LOWER(Email) = LOWER('$email')";
+        $user_query = mysqli_query($con, $check_user);
+
+        if ($user_query) {
+            $user = mysqli_fetch_assoc($user_query);
+
+            if ($user) {
+                $user_otp = generateRandomNumber();
+
+                $otp_query = "UPDATE user SET OTP = '$user_otp' WHERE Email = '$email'";
+                $user_otp_query = mysqli_query($con, $otp_query);
+
+                if ($user_otp_query) {
+                    $to = $user['Email'];
+                    $subject = "Password Reset";
+
+                    $message = '
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <title>Password Reset</title>
+                    </head>
+                    <body>
+                        <p>Hello ' . $email . ',</p>
+                    
+                        <p>We received a request to reset your password. If you did not initiate this request, please disregard this email.</p>
+                    
+                        <p>To reset your password, click on the following link:</p>
+                        <p><a href="./reset.php" target="_blank">Reset Password</a></p>
+                    
+                        <p>Alternatively, you can use the following One-Time Password (OTP):</p>
+                        <p><strong>' . $user_otp . '</strong></p>
+                    
+                        <p>Thank you,</p>
+                        <p>Your Company Name</p>
+                    </body>
+                    </html>
+                ';
+
+                    $headers = "From: <ralphsaridar@hotmail.com>\r\n";
+                    $headers .= "Content-type:text/html;charset=UTF-8\r\n";
+                    $headers .= "MIME-Version: 1.0\r\n";
+
+                    $mail_sent = mail($to, $subject, $message, $headers);
+                    if ($mail_sent) {
+                        echo '<script>alert("Please check your email")</script>';
+                    } else {
+                        echo '<script>alert("Error while sending an email")</script>';
+                    }
+                } else {
+                    echo '<script>alert("Failed to update OTP")</script>';
+                }
+            } else {
+                echo '<script>alert("User not found")</script>';
+            }
+        } else {
+            echo '<script>alert("Query failed")</script>';
+        }
+    }
+    ?>
+
 
 
 

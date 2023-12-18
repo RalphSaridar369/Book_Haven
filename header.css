@@ -13,6 +13,10 @@
     cursor: pointer;
 }
 
+.logout_button:hover{
+    cursor:pointer;
+}
+
 #menu_shown_not_shown,
 #menu_shown_not_shown a{
     color:rgba(162.264, 246.263, 121.88, 1)!important

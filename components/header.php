@@ -15,7 +15,7 @@
                 <div style="display:flex;gap:40px;">
                     <a href="./home.php">Home</a>
                     <a href="./checkout.php">My Cart</a>
-                    <p id="logout" style="color:white">Logout</p>
+                    <p class="logout_button" style="color:white">Logout</p>
                 </div>';
             } else {
                 echo '
@@ -49,7 +49,7 @@
                 echo '
                 <a href="./home.php">Home</a><br /><br />
                 <a href="./checkout.php">My Cart</a><br /><br />
-                <p id="logout" style="color:white">Logout</p>';
+                <p class="logout_button">Logout</p>';
             } else {
                 echo '
                 <a href="./login.php">Login</a><br /><br />
@@ -64,7 +64,7 @@
 <script>
     $(document).ready(function() {
         // Handle logout click
-        $('#logout').on('click', function(e) {
+        $('.logout_button').on('click', function(e) {
             console.log("first")
             e.preventDefault();
             $.ajax({
@@ -81,9 +81,7 @@
                         console.log(response.message);
                     }
                 },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                }
+                error: function(xhr, status, error) {}
             });
         });
     });

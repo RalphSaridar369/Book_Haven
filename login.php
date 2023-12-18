@@ -3,13 +3,12 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <?php
+session_start();
 if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
     header('Location: home.php');
     exit();
 }
 ?>
-
-<!------ Include the above in your HEAD tag ---------->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -66,26 +65,28 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
         } else {
             include_once('./actions/connection.php');
 
-            $email = $_POST['inputEmail'];
+            $email = trim($_POST['inputEmail']);
             $password = $_POST['inputPassword'];
 
             $email = mysqli_real_escape_string($con, $email);
-            $password = md5(mysqli_real_escape_string($con, $password));
 
-            $check_login = "SELECT * FROM user WHERE Email = '$email' AND Password = '$password'";
+            $check_login = "SELECT * FROM user WHERE LOWER(Email) = LOWER('$email')";
             $user_query = mysqli_query($con, $check_login);
 
             if ($user_query) {
                 $user = mysqli_fetch_assoc($user_query);
 
                 if ($user) {
-                    session_start();
-                    $_SESSION['id'] = $user['ID'];
-                    $_SESSION['email'] = $user['Email'];
-                    header('Location: home.php');
-                    exit();
+                    if (password_verify($password, $user['Password'])) {
+                        $_SESSION['id'] = $user['ID'];
+                        $_SESSION['email'] = $user['Email'];
+                        header('Location: home.php');
+                        exit();
+                    } else {
+                        echo '<script>alert("Incorrect email or password")</script>';
+                    }
                 } else {
-                    echo '<script>alert("Incorrect email or password")</script>';
+                    echo '<script>alert("User not found")</script>';
                 }
             } else {
                 echo '<script>alert("Query failed")</script>';
@@ -93,6 +94,7 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
         }
     }
     ?>
+
 
 
 </body>

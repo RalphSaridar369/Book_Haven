@@ -65,7 +65,6 @@ $(()=>{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="./script.js"></script>
-
     <?php
     if (isset($_POST['submit-signup'])) {
         if (empty($_POST['inputEmail']) || empty($_POST['inputPassword']) || empty($_POST['inputRepeatPassword'])) {
@@ -77,18 +76,25 @@ $(()=>{
                 include_once('./actions/connection.php');
 
                 $email = $_POST['inputEmail'];
-                $password = md5($_POST['inputPassword']);
+                $password = $_POST['inputPassword'];
 
                 //checking if user exists
-                $query = "SELECT * FROM user WHERE email = '.$email.'";
+                $query = "SELECT * FROM user WHERE email = '$email'";
                 $user_query = mysqli_query($con, $query);
                 $exists = mysqli_num_rows($user_query);
+
                 if ($exists > 0) {
                     echo '<script>alert("Email already exists")</script>';
                 } else {
-                    $query = "INSERT INTO user(email, password) VALUES('.$email.','.$password.')";
-                    if (mysqli_query($con, $query)) {
+                    // Use password_hash for secure password hashing
+                    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+                    $insert_query = "INSERT INTO user(email, password) VALUES('$email','$hashed_password')";
+
+                    if (mysqli_query($con, $insert_query)) {
                         echo '<script>alert("User registered successfully")</script>';
+                    } else {
+                        echo '<script>alert("Registration failed")</script>';
                     }
                 }
             }

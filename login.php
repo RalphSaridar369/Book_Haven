@@ -44,12 +44,12 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
             </button>
         </form>
 
-        <form method="POST" class="form-reset">
+        <div class="form-reset">
             <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Reset Password</h1>
-            <input type="email" id="resetEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-            <button name="submit-reset" class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Reset Password</button>
+            <input type="email" id="resetEmail" class="form-control inputEmail" placeholder="Email address" required="" autofocus="">
+            <button id="submit-reset" name="submit-reset" class="btn btn-success btn-block"><i class="fas fa-sign-in-alt"></i> Reset Password</button>
             <a href="#" id="cancel_reset"><i class="fas fa-angle-left"></i> Back</a>
-        </form>
+        </div>
 
 
     </div>
@@ -57,6 +57,8 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="./script.js"></script>
+
+
 
     <?php
 
@@ -97,84 +99,37 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
     ?>
 
 
-    <?php
-    function generateRandomNumber()
-    {
-        return rand(100000, 999999);
-    }
-
-    if (isset($_POST['submit-reset']) && isset($_POST['inputEmail'])) {
-        include_once('./actions/connection.php');
-
-        $email = trim($_POST['inputEmail']);
-        $email = mysqli_real_escape_string($con, $email);
-
-        $check_user = "SELECT * FROM user WHERE LOWER(Email) = LOWER('$email')";
-        $user_query = mysqli_query($con, $check_user);
-
-        if ($user_query) {
-            $user = mysqli_fetch_assoc($user_query);
-
-            if ($user) {
-                $user_otp = generateRandomNumber();
-
-                $otp_query = "UPDATE user SET OTP = '$user_otp' WHERE Email = '$email'";
-                $user_otp_query = mysqli_query($con, $otp_query);
-
-                if ($user_otp_query) {
-
-                    $API_KEY = 'B2FE4EA064BC27B51074B8D5F7B4358664E7A24E3DB50782D85E866232A34A9A1CEE48A1C6F3E1BCE77D07AA521E1996';
-
-                    $to = $user['Email'];
-                    $subject = "Password Reset";
-
-                    $message = '
-                        <html lang="en">
-                        <head>
-                            <meta charset="UTF-8">
-                            <title>Password Reset</title>
-                        </head>
-                        <body>
-                            <p>Hello ' . $email . ',</p>
-                        
-                            <p>We received a request to reset your password. If you did not initiate this request, please disregard this email.</p>
-                        
-                            <p>To reset your password, click on the following link:</p>
-                            <p><a href="./reset.php" target="_blank">Reset Password</a></p>
-                        
-                            <p>Alternatively, you can use the following One-Time Password (OTP):</p>
-                            <p><strong>' . $user_otp . '</strong></p>
-                        
-                            <p>Thank you,</p>
-                            <p>Your Company Name</p>
-                        </body>
-                        </html>
-                    ';
-
-                    $headers = "From: ralph.saridar@isae.edu.lb\r\n";
-                    $headers .= "Content-type: text/html;charset=UTF-8\r\n";
-                    $headers .= "MIME-Version: 1.0\r\n";
 
 
-                    $mail_sent = mail($to, $subject, $message, $headers);
-                    if ($mail_sent) {
-                        echo '<script>alert("Please check your email")</script>';
-                    } else {
-                        echo '<script>alert("Error while sending an email")</script>';
+    <script>
+        $(document).ready(function() {
+            $('#submit-reset').on('click', function() {
+                var inputEmail = $('.inputEmail').val();
+
+                alert(inputEmail);
+                $.ajax({
+                    type: 'POST',
+                    url: './actions/sendEmail.php',
+                    data: {
+                        'submit-reset': true,
+                        'inputEmail': inputEmail
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.success) {
+                            alert(response.message);
+                        } else {
+                            alert('Error: ' + response.message);
+                        }
+                    },
+                    error: function(err) {
+                        console.log(err)
+                        alert('AJAX request failed: ');
                     }
-                } else {
-                    echo '<script>alert("Failed to update OTP")</script>';
-                }
-            } else {
-                echo '<script>alert("User not found")</script>';
-            }
-        } else {
-            echo '<script>alert("Query failed")</script>';
-        }
-    }
-    ?>
-
-
+                });
+            });
+        });
+    </script>
 
 
 </body>

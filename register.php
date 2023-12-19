@@ -89,7 +89,7 @@ $(()=>{
                     // Use password_hash for secure password hashing
                     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-                    $insert_query = "INSERT INTO user(email, password) VALUES('$email','$hashed_password')";
+                    $insert_query = "INSERT INTO user(email, password, OTP) VALUES('$email','$hashed_password', '')";
 
                     if (mysqli_query($con, $insert_query)) {
                         echo '<script>alert("User registered successfully")</script>';

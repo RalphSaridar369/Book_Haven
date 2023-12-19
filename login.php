@@ -122,35 +122,39 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
                 $user_otp_query = mysqli_query($con, $otp_query);
 
                 if ($user_otp_query) {
+
+                    $API_KEY = 'B2FE4EA064BC27B51074B8D5F7B4358664E7A24E3DB50782D85E866232A34A9A1CEE48A1C6F3E1BCE77D07AA521E1996';
+
                     $to = $user['Email'];
                     $subject = "Password Reset";
 
                     $message = '
-                    <html lang="en">
-                    <head>
-                        <meta charset="UTF-8">
-                        <title>Password Reset</title>
-                    </head>
-                    <body>
-                        <p>Hello ' . $email . ',</p>
-                    
-                        <p>We received a request to reset your password. If you did not initiate this request, please disregard this email.</p>
-                    
-                        <p>To reset your password, click on the following link:</p>
-                        <p><a href="./reset.php" target="_blank">Reset Password</a></p>
-                    
-                        <p>Alternatively, you can use the following One-Time Password (OTP):</p>
-                        <p><strong>' . $user_otp . '</strong></p>
-                    
-                        <p>Thank you,</p>
-                        <p>Your Company Name</p>
-                    </body>
-                    </html>
-                ';
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <title>Password Reset</title>
+                        </head>
+                        <body>
+                            <p>Hello ' . $email . ',</p>
+                        
+                            <p>We received a request to reset your password. If you did not initiate this request, please disregard this email.</p>
+                        
+                            <p>To reset your password, click on the following link:</p>
+                            <p><a href="./reset.php" target="_blank">Reset Password</a></p>
+                        
+                            <p>Alternatively, you can use the following One-Time Password (OTP):</p>
+                            <p><strong>' . $user_otp . '</strong></p>
+                        
+                            <p>Thank you,</p>
+                            <p>Your Company Name</p>
+                        </body>
+                        </html>
+                    ';
 
-                    $headers = "From: <ralphsaridar@hotmail.com>\r\n";
-                    $headers .= "Content-type:text/html;charset=UTF-8\r\n";
+                    $headers = "From: ralph.saridar@isae.edu.lb\r\n";
+                    $headers .= "Content-type: text/html;charset=UTF-8\r\n";
                     $headers .= "MIME-Version: 1.0\r\n";
+
 
                     $mail_sent = mail($to, $subject, $message, $headers);
                     if ($mail_sent) {

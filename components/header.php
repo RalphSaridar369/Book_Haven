@@ -9,7 +9,6 @@
         </a>
         <div>
             <?php
-            session_start();
             if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
                 echo '
                 <div style="display:flex;gap:40px;">

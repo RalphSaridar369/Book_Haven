@@ -106,27 +106,30 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
             $('#submit-reset').on('click', function() {
                 var inputEmail = $('.inputEmail').val();
 
-                alert(inputEmail);
                 $.ajax({
-                    type: 'POST',
-                    url: './actions/sendEmail.php',
-                    data: {
-                        'submit-reset': true,
-                        'inputEmail': inputEmail
-                    },
-                    dataType: 'json',
-                    success: function(response) {
+                        type: 'POST',
+                        url: './actions/sendEmail.php',
+                        data: {
+                            'submit-reset': true,
+                            'inputEmail': inputEmail
+                        },
+                        dataType: 'json',
+                    })
+                    .done(function(response) {
                         if (response.success) {
                             alert(response.message);
+                            window.location.href = `./reset.php?key=${response.key}&email=${inputEmail}`;
                         } else {
                             alert('Error: ' + response.message);
                         }
-                    },
-                    error: function(err) {
-                        console.log(err)
+                    })
+                    .fail(function(jqXHR, textStatus, errorThrown) {
+                        console.log(typeof jqXHR)
+                        console.log(jqXHR)
+                        console.log(textStatus + "\n")
+                        console.log(errorThrown)
                         alert('AJAX request failed: ');
-                    }
-                });
+                    });
             });
         });
     </script>

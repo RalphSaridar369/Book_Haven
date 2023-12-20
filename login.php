@@ -29,8 +29,8 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
             <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Sign in</h1>
 
 
-            <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-            <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required="">
+            <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required autofocus="">
+            <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
 
             <button name="submit-login" class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button>
             <a href="#" id="forgot_pswd">Forgot password?</a>
@@ -46,7 +46,7 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
 
         <div class="form-reset">
             <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Reset Password</h1>
-            <input type="email" id="resetEmail" class="form-control inputEmail" placeholder="Email address" required="" autofocus="">
+            <input type="email" id="resetEmail" class="form-control inputEmail" placeholder="Email address" required autofocus="">
             <button id="submit-reset" name="submit-reset" class="btn btn-success btn-block"><i class="fas fa-sign-in-alt"></i> Reset Password</button>
             <a href="#" id="cancel_reset"><i class="fas fa-angle-left"></i> Back</a>
         </div>

@@ -31,9 +31,9 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
 
             <input type="email" id="user-email" class="form-control" name="inputEmail" placeholder="Email address" required autofocus="">
             <br>
-            <input type="password" id="user-pass" class="form-control" name="inputPassword" placeholder="Password" required autofocus="">
+            <input type="password" id="user-pass" class="form-control" name="inputPassword" placeholder="Password" required minlength="8" autofocus="">
             <br>
-            <input type="password" id="user-repeatpass" class="form-control" name="inputRepeatPassword" placeholder="Repeat Password" required autofocus="">
+            <input type="password" id="user-repeatpass" class="form-control" name="inputRepeatPassword" placeholder="Repeat Password" required minlength="8" autofocus="">
 
             <button class="btn btn-primary btn-block" type="submit" name="submit-signup"><i class="fas fa-user-plus"></i> Sign Up</button>
             <a href="login.php"> Back</a>

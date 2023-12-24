@@ -21,6 +21,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
     <title>BookHaven</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="./images/logo2.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
@@ -84,6 +85,8 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
 
             // update all line_items
             $result = mysqli_query($con, "UPDATE line_item SET Order_ID = $orderID WHERE Order_ID IS NULL AND Cart_ID = $cartID ");
+
+            echo '<script>alert("Order fulfilled");</script>';
         }
     }
     ?>

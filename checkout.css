@@ -175,4 +175,17 @@
     .checkout_container{
         flex-direction: column-reverse;
     }
+
+    .left_checkout_container{
+        padding:20px 0px!important;
+    }
+
+    .checkout_submit{
+        width:50%!important;
+    }
+
+    .left_checkout_container input[type=text]{
+        width:auto!important;
+    }
+
 }

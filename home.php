@@ -17,7 +17,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
     <link rel="stylesheet" href="./footer.css">
     <link rel="stylesheet" href="./home.css">
     <link rel="stylesheet" href="./filterBar.css">
-
+    <link rel="icon" href="./images/logo2.png" type="image/x-icon">
     <title>BookHaven</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

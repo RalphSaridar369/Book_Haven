@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
-
+    <link rel="icon" href="./images/logo2.png" type="image/x-icon">
     <script>
         function runChangeData() {
             setInterval(() => {
@@ -41,7 +41,9 @@
         }
     </script>
 </head>
-
+<div class="header">
+       
+    </div>
 <body onload="runChangeData()">
     <div class="hero_container">
         <div class="hero_wrapper_1">
@@ -50,7 +52,7 @@
 
         <div class="hero_wrapper_2">
             <h3 id="heroText">“To learn to read is to light a fire; every syllable that is spelled out is a spark.” ― Victor Hugo</h3>
-            <img src="./images/hero.png" alt="hero1" class="hero_image_1">
+            <img src="./images/hero1.png" alt="hero1" class="hero_image_1">
         </div>
         <img src="./images/wave.png" class="hero_wave_1" />
     </div>

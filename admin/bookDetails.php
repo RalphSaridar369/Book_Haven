@@ -27,79 +27,54 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['admin_email'])) {
 
     <?php include("../components/menuAdmin.php") ?>
 
-
     <div class="component_content">
-
-        <?php
-        include_once('../actions/admin/connection.php');
-        $id = $_GET['id'];
-
-        $sql = "SELECT `order`.*, line_item.Image_link, line_item.Title, line_item.Quantity, line_item.Price
-        FROM `order`
-        JOIN line_item ON `order`.ID = line_item.Order_ID
-        WHERE `order`.ID = '$id'";
-
-        $result = mysqli_query($con, $sql);
-
-        if (mysqli_num_rows($result) > 0) {
-
-            $total = 0;
-            $rows = array();
-            while ($row = $result->fetch_assoc()) {
-                $total += $row["Quantity"] * $row["Price"];
-                $rows[] = $row;
-            }
-
-            $first_result = $result->fetch_assoc();
-            echo '<h1>Order #: ' . $rows[0]['ID'] . '</h1><br/>';
-            echo '<h2>Full Name: ' . $rows[0]['First_Name'] . ' ' . $rows[0]['Last_Name'] . '</h2><br/>';
-            echo '<h4>City: ' . $rows[0]['City'] . '</h4>';
-            echo '<h4>Address: ' . $rows[0]['Address'] . '</h4>';
-            echo '<h4>Street: ' . $rows[0]['Street'] . '</h4>';
-            echo '<h4>Phone Number: ' . $rows[0]['Phone_Num'] . '</h4><br/><br/>';
-
-
-            echo '<h4>Total Price: $' . $total . '</h4><br/>';
-
-            echo '<table class="table half-full-height">
+        <table class="table">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Image</th>
                     <th scope="col">Title</th>
-                    <th scope="col">Quantity</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Date</th>
                     <th scope="col">Price</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
-            <tbody>';
+            <tbody>
+                <?php
+                include_once('../actions/admin/connection.php');
+                $sql = "SELECT * FROM book";
+                $result = mysqli_query($con, $sql);
 
-            foreach ($rows as $row) {
-                echo "<tr>
-                <th scope='row'>" . $row["ID"] . "</th>
-                <td><img src='../images/booksForHome/" . $row["Image_link"] . "'/></td>
-                <td>" . $row["Title"] . "</td>
-                <td>" . $row["Quantity"] . "</td>
-                <td>$" . $row["Price"] . "</td>
-            </tr>";
-            }
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr id='book-" . $row['ID'] . "' class='clickable' onclick='redirect(event," . $row['ID'] . ")'>
+                                <td>" . $row["ID"] . "</td>
+                                <td>" . $row["Title"] . "</td>
+                                <td>" . $row["Author"] . "</td>
+                                <td>" . $row["Date"] . "</td>
+                                <td>$" . $row["Price"] . "</td>
+                                <td>
+                                    <img src='../images/icons/delete.png' class='delete-icon' onClick=\"deleteBook(" . $row["ID"] . ")\" alt='image_book' />
+                                </td>
+                              </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='5'>No books found</td></tr>";
+                }
 
-            echo '</tbody>
-            </table>';
-        } else {
-            echo "<tr><td colspan='5'>No books found</td></tr>";
-        }
-
-        mysqli_close($con);
-        ?>
-
-        </tbody>
+                ?>
+            </tbody>
         </table>
     </div>
 
+    <div>
+        Add Book
+    </div>
+
     <script>
-        function redirectPath(event, id) {
+        function redirect(event, id) {
             event.preventDefault();
-            window.location.href = "./productDetails.php?id=" + id;
+            window.location.href = "./bookDetails.php?id=" + id;
         }
 
         function deleteBook(id) {

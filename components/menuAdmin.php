@@ -7,10 +7,10 @@
     <div class="header_container_3">
         <img src="../images/Logo.png" alt="logo" class="logo_image">
         <div>
-            <a onclick="redirect(event,'orders.php')" href="#">Orders</a>
+            <a onclick="menuRedirect(event,'orders.php')" class="clickable">Orders</a>
         </div>
         <div>
-            <a onclick="redirect(event,'products.php')" href="#">Products</a>
+            <a onclick="menuRedirect(event,'books.php')" class="clickable">Books</a>
         </div>
         <div>
             <a class="logout_button">Logout</a>
@@ -18,9 +18,11 @@
     </div>
 </body>
 <script>
-    function redirect(event, path) {
-        event.preventDefault();
-        window.location.href = "http://localhost/BookHaven/admin/" + path;
+    function menuRedirect(event, path) {
+        var currentUrl = "http://localhost/BookHaven/admin/" + path;
+        var urlWithoutParams = currentUrl.split('?')[0];
+        window.history.replaceState({}, document.title, urlWithoutParams);
+        window.location.href = currentUrl
     }
 
 

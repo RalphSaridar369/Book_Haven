@@ -28,10 +28,25 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['admin_email'])) {
     <?php include("../components/menuAdmin.php") ?>
 
     <div class="component_content">
-        <table class="table">
+
+        <div style="display:flex; justify-content:flex-end;">
+            <div class="clickable" onclick="goToAddBook(event)" style="
+                text-align:center;
+                margin-bottom:20px!important;
+                width:150px!important;
+                border:1px rgba(162.264, 246.263, 121.88, 1) solid;
+                color:white;
+                padding:5px 0!important;
+                background-color:rgba(162.264, 246.263, 121.88, 1);
+                border-radius: 10px;">
+                Add Book
+            </div>
+        </div>
+        <table class="table full-height">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Title</th>
                     <th scope="col">Author</th>
                     <th scope="col">Date</th>
@@ -49,6 +64,7 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['admin_email'])) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr id='book-" . $row['ID'] . "' class='clickable' onclick='redirect(event," . $row['ID'] . ")'>
                                 <td>" . $row["ID"] . "</td>
+                                <td><img src='../images/booksForHome/" . $row["Image_link"] . "'/></td>
                                 <td>" . $row["Title"] . "</td>
                                 <td>" . $row["Author"] . "</td>
                                 <td>" . $row["Date"] . "</td>
@@ -67,14 +83,16 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['admin_email'])) {
         </table>
     </div>
 
-    <div>
-        Add Product
-    </div>
 
     <script>
+        function goToAddBook(event) {
+            event.preventDefault();
+            window.location.href = "./addBook.php";
+        }
+
         function redirect(event, id) {
             event.preventDefault();
-            window.location.href = "./productDetails.php?id=" + id;
+            window.location.href = "./bookDetails.php?id=" + id;
         }
 
         function deleteBook(id) {

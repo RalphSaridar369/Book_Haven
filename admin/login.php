@@ -5,8 +5,8 @@
 
 <?php
 session_start();
-if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
-    header('Location: order.php');
+if (isset($_SESSION['admin_id']) || isset($_SESSION['admin_email'])) {
+    header('Location: orders.php');
     exit();
 }
 ?>

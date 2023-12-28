@@ -76,7 +76,7 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['admin_email'])) {
             foreach ($rows as $row) {
                 echo "<tr>
                 <th scope='row'>" . $row["ID"] . "</th>
-                <td><img src='../images/booksForHome/" . $row["Image_link"] . "'/></td>
+                <td><img src='../images/booksForHome/" . $row["Image_link"] . "'/></td> 
                 <td>" . $row["Title"] . "</td>
                 <td>" . $row["Quantity"] . "</td>
                 <td>$" . $row["Price"] . "</td>
@@ -99,7 +99,7 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['admin_email'])) {
     <script>
         function redirectPath(event, id) {
             event.preventDefault();
-            window.location.href = "./productDetails.php?id=" + id;
+            window.location.href = "./bookDetails.php?id=" + id;
         }
 
         function deleteBook(id) {

@@ -30,7 +30,7 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['admin_email'])) {
 
 
     <div class="component_content">
-        <table class="table">
+        <table class="table full-height">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -49,7 +49,7 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['admin_email'])) {
 
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        echo "<tr>
+                        echo "<tr class='clickable' onclick='redirect(event," . $row['ID'] . ")'>
                         <td>" . $row["ID"] . "</td>
                         <td>" . $row["First_Name"] . "</td>
                         <td>" . $row["Last_Name"] . "</td>
@@ -67,6 +67,13 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['admin_email'])) {
         </table>
     </div>
 
+
+    <script>
+        function redirect(event, id) {
+            event.preventDefault();
+            window.location.href = "./orderDetails.php?id=" + id;
+        }
+    </script>
 </body>
 
 </html>

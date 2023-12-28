@@ -7,10 +7,10 @@
     <div class="header_container_3">
         <img src="../images/Logo.png" alt="logo" class="logo_image">
         <div>
-            <a onclick="redirect(event,'./orders.php')" href="#">Orders</a>
+            <a onclick="redirect(event,'orders.php')" href="#">Orders</a>
         </div>
         <div>
-            <a onclick="redirect(event,'./products.php')" href="#">Products</a>
+            <a onclick="redirect(event,'products.php')" href="#">Products</a>
         </div>
         <div>
             <a class="logout_button">Logout</a>
@@ -20,12 +20,11 @@
 <script>
     function redirect(event, path) {
         event.preventDefault();
-        window.location.href = path; // Replace with your desired URL
+        window.location.href = "http://localhost/BookHaven/admin/" + path;
     }
 
 
     $(document).ready(function() {
-        // Handle logout click
         $('.logout_button').on('click', function(e) {
             console.log("first")
             e.preventDefault();

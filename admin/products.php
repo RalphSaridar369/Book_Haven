@@ -28,7 +28,7 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['admin_email'])) {
     <?php include("../components/menuAdmin.php") ?>
 
     <div class="component_content">
-        <table class="table">
+        <table class="table full-height">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -47,7 +47,7 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['admin_email'])) {
 
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        echo "<tr id='book-" . $row['ID'] . "'>
+                        echo "<tr id='book-" . $row['ID'] . "' class='clickable' onclick='redirect(event," . $row['ID'] . ")'>
                                 <td>" . $row["ID"] . "</td>
                                 <td>" . $row["Title"] . "</td>
                                 <td>" . $row["Author"] . "</td>
@@ -72,6 +72,11 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['admin_email'])) {
     </div>
 
     <script>
+        function redirect(event, id) {
+            event.preventDefault();
+            window.location.href = "./productDetails.php?id=" + id;
+        }
+
         function deleteBook(id) {
             if (confirm("Are you sure you want to delete this book?")) {
                 var xhr = new XMLHttpRequest();

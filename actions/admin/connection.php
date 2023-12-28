@@ -1,5 +1,5 @@
 <?php
-define("db_SERVER", "localhost:3306");
+define("db_SERVER", "localhost:3308");
 define("db_USER", "root");
 define("db_PASSWORD", "");
 define("db_DBNAME", "bookhaven");

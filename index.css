@@ -10,6 +10,37 @@ body{
   height:fit-content!important;
 }
 
+.component_content{
+  width: 100%;
+  padding-top: 40px!important;
+  padding-right: 40px!important;
+}
+
+.table{
+  overflow-y: auto!important;
+}
+
+.component_content th{
+    color:rgba(162.264, 246.263, 121.88, 1)!important
+}
+
+.component_content tr{
+  height: 30px!important;
+}
+
+.component_content td{
+  color: rgb(180, 180, 180)!important;
+  /* color:lightgray!important */
+}
+
+td img {
+  height: 20px!important;
+}
+
+td img:hover {
+  cursor: pointer!important;
+}
+
 a{
   color:white!important;
   text-decoration:none!important;

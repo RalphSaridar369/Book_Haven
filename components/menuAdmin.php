@@ -7,10 +7,10 @@
     <div class="header_container_3">
         <img src="../images/Logo.png" alt="logo" class="logo_image">
         <div>
-            <a href="./orders.php">Orders</a>
+            <a onclick="redirect(event,'./orders.php')" href="#">Orders</a>
         </div>
         <div>
-            <a href="./products.php">Products</a>
+            <a onclick="redirect(event,'./products.php')" href="#">Products</a>
         </div>
         <div>
             <a class="logout_button">Logout</a>
@@ -18,6 +18,12 @@
     </div>
 </body>
 <script>
+    function redirect(event, path) {
+        event.preventDefault();
+        window.location.href = path; // Replace with your desired URL
+    }
+
+
     $(document).ready(function() {
         // Handle logout click
         $('.logout_button').on('click', function(e) {

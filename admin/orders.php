@@ -14,45 +14,58 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['admin_email'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../index.css">
     <link rel="stylesheet" href="../header.css">
-    <link rel="stylesheet" href="../footer.css">
-    <link rel="stylesheet" href="../home.css">
-    <link rel="stylesheet" href="../filterBar.css">
     <link rel="icon" href="../images/logo2.png" type="image/x-icon">
     <title>Admin Panel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-    <script>
-        function submitForm() {
-            const search_text = document.getElementById('search_bar').value;;
-            window.location.href = `./home.php?q=${search_text}`;
-        }
-
-        function handleMenu() {
-            let menu = document.getElementById('menu_shown_not_shown').classList.contains("menu_not_shown")
-            if (menu) {
-                menu = document.getElementById('menu_shown_not_shown')
-                menu.classList.add("menu_shown")
-                menu.classList.remove("menu_not_shown")
-                document.getElementsByClassName('burger_icon')[0].style.display = 'none';
-                document.getElementsByClassName('header_container_2')[0].style.display = 'flex-start';
-            } else {
-                menu = document.getElementById('menu_shown_not_shown')
-                menu.classList.add("menu_not_shown")
-                menu.classList.remove("menu_shown")
-                document.getElementsByClassName('burger_icon')[0].style.display = 'block';
-                document.getElementsByClassName('header_container_2')[0].style.display = 'center';
-
-            }
-        }
-    </script>
 </head>
 
-<body style="width:100vw;">
+<body style="width:100vw; display:flex">
 
     <?php include("../components/menuAdmin.php") ?>
+
+
+
+    <div class="component_content">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Phone Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                include('../actions/admin/connection.php');
+                $sql = "SELECT * FROM `order`";
+                $result = mysqli_query($con, $sql);
+
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>
+                        <td>" . $row["ID"] . "</td>
+                        <td>" . $row["First_Name"] . "</td>
+                        <td>" . $row["Last_Name"] . "</td>
+                        <td>" . $row["City"] . "</td>
+                        <td>" . $row["Address"] . "</td>
+                        <td>" . $row["Phone_Num"] . "</td>
+                      </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='6'>No orders found</td></tr>";
+                }
+
+                ?>
+            </tbody>
+        </table>
+    </div>
 
 </body>
 

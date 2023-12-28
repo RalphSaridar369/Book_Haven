@@ -1,4 +1,5 @@
 .header_container, .header_container_2{
+    height: 80px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -22,6 +23,8 @@
     color:rgba(162.264, 246.263, 121.88, 1)!important
 }
 
+.bg_container{
+}
 
 .menu_shown{
     position:fixed;
@@ -90,3 +93,17 @@
         display: none!important;
       }
     }
+
+.header_container_3 img{
+    margin-bottom: 50px!important;
+}
+
+.header_container_3{
+    background: linear-gradient(to right, rgba(162.264, 246.263, 121.88, 1) 0%, rgba(230, 255, 215, 1) 50%, rgba(255, 255, 255, 1) 100%);
+    width:400px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding:40px 20px!important;
+}

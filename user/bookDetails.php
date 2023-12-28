@@ -13,13 +13,13 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./index.css">
-    <link rel="stylesheet" href="./header.css">
-    <link rel="stylesheet" href="./footer.css">
-    <link rel="stylesheet" href="./home.css">
-    <link rel="stylesheet" href="./bookDetails.css">
-    <link rel="stylesheet" href="./filterBar.css">
-    <link rel="icon" href="./images/logo2.png" type="image/x-icon">
+    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="../header.css">
+    <link rel="stylesheet" href="../footer.css">
+    <link rel="stylesheet" href="../home.css">
+    <link rel="stylesheet" href="../bookDetails.css">
+    <link rel="stylesheet" href="../filterBar.css">
+    <link rel="icon" href="../images/logo2.png" type="image/x-icon">
     <title>BookHaven</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,7 +56,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
 <body>
     <div>
         <div class="header_wrapper">
-            <?php include("./components/header.php") ?>
+            <?php include("../components/header.php") ?>
         </div>
     </div>
 
@@ -68,7 +68,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
             echo '<script>alert("Please insert quantity");</script>';
         } else {
 
-            include_once('./actions/connection.php');
+            include_once('../actions/connection.php');
             $result = mysqli_query($con, "SELECT * FROM book WHERE id = " . $_GET['id']);
             if ($result) {
                 $row = mysqli_fetch_assoc($result);
@@ -132,7 +132,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
 
     <!-- getting book details -->
     <?php
-    include_once('./actions/connection.php');
+    include_once('../actions/connection.php');
 
     $result = mysqli_query($con, "SELECT * FROM book WHERE id = " . $_GET['id']);
     if ($result) {
@@ -142,7 +142,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
             echo '          
           <div class="book_container">
             <div class="book_image_container">
-                <img class="book_image" src="./images/booksForHome/' . $row['Image_link'] . '" />
+                <img class="book_image" src="../images/booksForHome/' . $row['Image_link'] . '" />
             </div>
             <div class="book_details_container">
                 <h1>' . $row['Title'] . '</h1>

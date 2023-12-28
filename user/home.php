@@ -12,12 +12,12 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./index.css">
-    <link rel="stylesheet" href="./header.css">
-    <link rel="stylesheet" href="./footer.css">
-    <link rel="stylesheet" href="./home.css">
-    <link rel="stylesheet" href="./filterBar.css">
-    <link rel="icon" href="./images/logo2.png" type="image/x-icon">
+    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="../header.css">
+    <link rel="stylesheet" href="../footer.css">
+    <link rel="stylesheet" href="../home.css">
+    <link rel="stylesheet" href="../filterBar.css">
+    <link rel="icon" href="../images/logo2.png" type="image/x-icon">
     <title>BookHaven</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,7 +68,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
 <body style="width:100vw;">
     <div>
         <div class="header_wrapper">
-            <?php include("./components/header.php") ?>
+            <?php include("../components/header.php") ?>
         </div>
     </div>
 
@@ -76,7 +76,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
         <form class="search_bar_container" method="GET" id="search_form">
             <input type="text" placeholder="Search for a book..." id="search_bar" />
             <div class="search_icon_container">
-                <img src="./images/icons/search.png" alt="search-icon" onclick="submitForm()" />
+                <img src="../images/icons/search.png" alt="search-icon" onclick="submitForm()" />
             </div>
         </form>
     </div>
@@ -84,7 +84,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
     <div class="products_container">
         <?php
 
-        include_once('./actions/connection.php');
+        include_once('../actions/connection.php');
         $result;
         if (isset($_GET['q']) && !empty($_GET['q'])) {
             $query = $_GET['q'];
@@ -98,7 +98,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
                 while ($row = mysqli_fetch_array($result)) {
                     echo '
                     <div class="product_container">
-                        <img src="./images/booksForHome/' . $row['Image_link'] . '" class="product_image"  />
+                        <img src="../images/booksForHome/' . $row['Image_link'] . '" class="product_image"  />
                         <a class="product_container_details" href="./bookDetails.php?id=' . $row['ID'] . '">
                             <h2 class="product_title">' . $row['Title'] . '</h2>
                             <h4>

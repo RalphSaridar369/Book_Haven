@@ -5,7 +5,7 @@
 <body>
     <div class="header_container">
         <a href="./home.php">
-            <img src="./images/Logo.png" alt="logo" class="logo_image">
+            <img src="../images/Logo.png" alt="logo" class="logo_image">
         </a>
         <div>
             <?php
@@ -28,7 +28,7 @@
 
     <div class="header_container_2">
         <a href="./home.php">
-            <img src="./images/Logo.png" alt="logo" class="logo_image">
+            <img src="../images/Logo.png" alt="logo" class="logo_image">
         </a>
         <div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="white" class="burger_icon" onclick="handleMenu()">
@@ -68,7 +68,7 @@
             e.preventDefault();
             $.ajax({
                 type: 'POST',
-                url: './actions/logout.php',
+                url: '../actions/logout.php',
                 data: {
                     logout: true
                 },

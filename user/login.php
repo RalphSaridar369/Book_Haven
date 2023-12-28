@@ -1,4 +1,4 @@
-<link rel="icon" href="./images/logo2.png" type="image/x-icon">
+<link rel="icon" href="../images/logo2.png" type="image/x-icon">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -20,7 +20,7 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-GLhlTQ8iN17SKgyRUxZNl+Uu7anh2U6zfeqVrO8C6q8x0n2tOr/zmZKUfH5O5f5y" crossorigin="anonymous">
-    <link rel="stylesheet" href="./stylelogin.css">
+    <link rel="stylesheet" href="../stylelogin.css">
     <title>BookHaven</title>
 </head>
 
@@ -57,7 +57,7 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="./script.js"></script>
+    <script src="../script.js"></script>
 
 
 
@@ -67,7 +67,7 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
         if (empty($_POST['inputEmail']) || empty($_POST['inputPassword'])) {
             echo '<script>alert("Please fill all inputs")</script>';
         } else {
-            include_once('./actions/connection.php');
+            include_once('../actions/connection.php');
 
             $email = trim($_POST['inputEmail']);
             $password = $_POST['inputPassword'];
@@ -109,7 +109,7 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
 
                 $.ajax({
                         type: 'POST',
-                        url: './actions/sendEmail.php',
+                        url: '../actions/sendEmail.php',
                         data: {
                             'submit-reset': true,
                             'inputEmail': inputEmail

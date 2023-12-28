@@ -13,15 +13,15 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./index.css">
-    <link rel="stylesheet" href="./header.css">
-    <link rel="stylesheet" href="./home.css">
-    <link rel="stylesheet" href="./checkout.css">
+    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="../header.css">
+    <link rel="stylesheet" href="../home.css">
+    <link rel="stylesheet" href="../checkout.css">
 
     <title>BookHaven</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" href="./images/logo2.png" type="image/x-icon">
+    <link rel="icon" href="../images/logo2.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
@@ -49,7 +49,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
 <body>
     <div>
         <div class="header_wrapper">
-            <?php include("./components/header.php") ?>
+            <?php include("../components/header.php") ?>
         </div>
     </div>
 
@@ -59,7 +59,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
         if (empty($_POST['first_name']) || empty($_POST['last_name']) || empty($_POST['city']) || empty($_POST['address']) || empty($_POST['street']) || empty($_POST['phone_number'])) {
             echo '<script>alert("Please fill all fields");</script>';
         } else {
-            include_once('./actions/connection.php');
+            include_once('../actions/connection.php');
             //get cart's info
 
             $result = mysqli_query($con, "SELECT * FROM cart WHERE User_ID = 1 ");
@@ -106,7 +106,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
         <div class="right_checkout_container">
             <!-- getting line items for customer's cart -->
             <?php
-            include_once('./actions/connection.php');
+            include_once('../actions/connection.php');
 
             $result = mysqli_query($con, "Select l.ID, l.Title, l.Price, l.Quantity, l.Image_link  From line_item l, cart c Where l.Order_ID IS NULL AND c.User_ID = 1 ");
             $total = 0;
@@ -125,7 +125,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
             foreach ($items as $row) {
                 echo '
                     <div class="right_checkout_item" id=checkout-container-' . $row["ID"] . '>
-                        <img src="./images/booksForHome/' . $row['Image_link'] . '" alt="image_book" />
+                        <img src="../images/booksForHome/' . $row['Image_link'] . '" alt="image_book" />
                         <div class="right_checkout_item_first_container">
                             <h2>' . $row['Title'] . '</h2>
                             <div class="quantity_price_container">
@@ -135,7 +135,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
                         </div>
                         <div>
                             <h3 class="total_text_per_item">Total: $' . ($row['Price'] * $row['Quantity']) . '</h3>
-                            <img src="./images/icons/delete.png" class="delete-icon" onClick="deleteLineItem(' . $row["ID"] . ',' . $row["Quantity"] * $row["Price"] . ')" alt="image_book" />
+                            <img src="../images/icons/delete.png" class="delete-icon" onClick="deleteLineItem(' . $row["ID"] . ',' . $row["Quantity"] * $row["Price"] . ')" alt="image_book" />
                         </div>
                     </div>';
             }
@@ -147,7 +147,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
         function deleteLineItem(id, totalValue) {
             if (confirm("Are you sure you want to delete this item?")) {
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', `./actions/deleteLineItem.php`, true);
+                xhr.open('POST', `../actions/deleteLineItem.php`, true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.onreadystatechange = function() {
                     var elementToDelete = document.getElementById('checkout-container-' + id);

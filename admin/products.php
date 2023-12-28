@@ -28,6 +28,20 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['admin_email'])) {
     <?php include("../components/menuAdmin.php") ?>
 
     <div class="component_content">
+
+        <div style="display:flex; justify-content:flex-end;">
+            <div class="clickable" onclick="goToAddProduct(event)" style="
+                text-align:center;
+                margin-bottom:20px!important;
+                width:150px!important;
+                border:1px rgba(162.264, 246.263, 121.88, 1) solid;
+                color:white;
+                padding:5px 0!important;
+                background-color:rgba(162.264, 246.263, 121.88, 1);
+                border-radius: 10px;">
+                Add Product
+            </div>
+        </div>
         <table class="table full-height">
             <thead>
                 <tr>
@@ -67,11 +81,13 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['admin_email'])) {
         </table>
     </div>
 
-    <div>
-        Add Product
-    </div>
 
     <script>
+        function goToAddProduct(event) {
+            event.preventDefault();
+            window.location.href = "./addProduct.php";
+        }
+
         function redirect(event, id) {
             event.preventDefault();
             window.location.href = "./productDetails.php?id=" + id;

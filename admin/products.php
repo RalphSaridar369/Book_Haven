@@ -46,6 +46,7 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['admin_email'])) {
             <thead>
                 <tr>
                     <th scope="col">ID</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Title</th>
                     <th scope="col">Author</th>
                     <th scope="col">Date</th>
@@ -63,6 +64,7 @@ if (!isset($_SESSION['admin_id']) || !isset($_SESSION['admin_email'])) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr id='book-" . $row['ID'] . "' class='clickable' onclick='redirect(event," . $row['ID'] . ")'>
                                 <td>" . $row["ID"] . "</td>
+                                <td><img src='../images/booksForHome/" . $row["Image_link"] . "'/></td>
                                 <td>" . $row["Title"] . "</td>
                                 <td>" . $row["Author"] . "</td>
                                 <td>" . $row["Date"] . "</td>

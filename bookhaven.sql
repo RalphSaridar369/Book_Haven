@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 24, 2023 at 10:54 AM
+-- Host: 127.0.0.1:3308
+-- Generation Time: Dec 28, 2023 at 08:25 PM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `bookhaven`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `ID` int(255) NOT NULL,
+  `Email` varchar(100) NOT NULL,
+  `Password` varchar(100) NOT NULL,
+  `OTP` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`ID`, `Email`, `Password`, `OTP`) VALUES
+(1, 'admin12345@yopmail.com', '$2y$10$ZnL5VKq6bOS3o1lKf2aQ6Oxv0vpOygW2i4RmZlou.igMtzWlAGOym', '$2y$10$CX52MLInJVzHv9Oa2bd0gOfGdP1tB17JEWri.s6W53OasApdrgbxq');
 
 -- --------------------------------------------------------
 
@@ -45,12 +65,12 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`ID`, `Title`, `Description`, `Author`, `Date`, `Genre`, `Price`, `Page_Count`, `Award`, `Image_link`) VALUES
-(1, 'Lorem Ipsum', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p', 'John Doe', '2016-12-13', 'Horror', 100, 307, 'Best Writer', '1.jpg'),
-(2, 'Lorem Ipsum', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p', 'John Doe', '2016-12-13', 'Horror', 100, 307, 'Best Writer', '2.jpg'),
-(3, 'Lorem Ipsum', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p', 'John Doe', '2016-12-13', 'Horror', 100, 307, 'Best Writer', '3.jpg'),
-(4, 'Lorem Ipsum', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p', 'John Doe', '2016-12-13', 'Horror', 100, 307, 'Best Writer', '4.jpg'),
-(5, 'Lorem Ipsum', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p', 'John Doe', '2016-12-13', 'Horror', 100, 307, 'Best Writer', '5.jpg'),
-(6, 'Lorem Ipsum', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p', 'charbel ', '2023-12-01', 'Drama', 150, 300, 'Best Writter', '6.jpg'),
+(1, 'The will to power', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p', 'John Doe', '2016-12-13', 'Horror', 100, 307, 'Best Writer', '1.jpg'),
+(2, 'Looking for the stranger', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p', 'John Doe', '2016-12-13', 'Horror', 100, 307, 'Best Writer', '2.jpg'),
+(3, 'The stranger', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p', 'John Doe', '2016-12-13', 'Horror', 100, 307, 'Best Writer', '3.jpg'),
+(4, 'The fall', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p', 'John Doe', '2016-12-13', 'Horror', 100, 307, 'Best Writer', '4.jpg'),
+(5, 'The myth of sisyphus', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p', 'John Doe', '2016-12-13', 'Horror', 100, 307, 'Best Writer', '5.jpg'),
+(6, 'The top ten', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p', 'charbel ', '2023-12-01', 'Drama', 150, 300, 'Best Writter', '6.jpg'),
 (7, 'the outside boy', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p', 'ralph', '2016-09-01', 'drama', 90, 200, 'Best writter', '7.jpeg'),
 (8, 'city ofdust', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p', 'charbel', '2023-12-19', 'action', 200, 333, 'top ', '8.jpeg'),
 (9, 'from here', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop p', 'ralph', '2023-12-10', 'action', 400, 500, 'murex dor', '9.jpeg'),
@@ -96,6 +116,14 @@ CREATE TABLE `line_item` (
   `Order_ID` int(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `line_item`
+--
+
+INSERT INTO `line_item` (`ID`, `Title`, `Price`, `Quantity`, `Image_link`, `Cart_ID`, `Book_ID`, `Order_ID`) VALUES
+(17, 'name starts with', 112, 1, '11.jpeg', 1, 11, 6),
+(18, 'name star', 200, 1, '12.jpg', 1, 12, 8);
+
 -- --------------------------------------------------------
 
 --
@@ -123,7 +151,10 @@ INSERT INTO `order` (`ID`, `First_Name`, `Last_Name`, `City`, `Address`, `Street
 (2, 'Ralph', 'Saridar', 'Beirut', 'Address', 'St. 1', 91223322, 1, 1),
 (3, '', '', '', '', '', 0, 1, 1),
 (4, '', '', '', '', '', 0, 1, 1),
-(5, '', '', '', '', '', 0, 1, 1);
+(5, '', '', '', '', '', 0, 1, 1),
+(6, 'Ralph', 'Saridar', 'Beirut', 'Adrress #1', 'Str.1', 70386361, 1, 1),
+(7, 'Ralph', 'Saridar', 'Beirut', 'Adrress #1', 'Str.1', 70386361, 1, 1),
+(8, 'ralph', 'hththt', 'hththt', 'hythth', 'hthth', 80383838, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -150,12 +181,18 @@ INSERT INTO `user` (`ID`, `Email`, `Password`, `OTP`) VALUES
 (5, 'ralph1@hotmail.com', '25d55ad283aa400af464c76d713c07ad', NULL),
 (6, 'ra@hotmail.com', '4124bc0a9335c27f086f24ba207a4912', NULL),
 (7, 'rtrtrt@yopmail.com', '$2y$10$kPX8fiEkKCSF.z62jad0Bey/szGxzne8/mCGhB91xJz2b6FMpq5Fi', NULL),
-(8, 'ralphsaridar@hotmail.com', '$2y$10$PeOhG.yweWyZoq9IJ192LOv39f4VaqcLLjzBnHbNk9DpiCfHRQW9y', '$2y$10$uASKimwnsfnqtTn84teO8uE4jrRwqB1B1NmgW2iEOQffMqNqLwjpC'),
+(8, 'ralphsaridar@hotmail.com', '$2y$10$uQpmbQs.xtHP2PFL6XrDeOpLe6T3RND0QaPR8QzH6xjJN3V9OTU4O', '$2y$10$MT2SFakdXseWk1Ui.M92oOfvMriDBS9Ip8bwYzocbPM6b0Y2ICR1C'),
 (9, 'charbel@gmail.com', '$2y$10$sB92wFn6wHxeGjR.Tv2A9ePvxQ163l8BrROAoEWuD0996hQFT.QVq', '');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `book`
@@ -198,10 +235,16 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `cart`
@@ -213,13 +256,13 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `line_item`
 --
 ALTER TABLE `line_item`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user`

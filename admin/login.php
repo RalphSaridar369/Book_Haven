@@ -37,12 +37,6 @@ if (isset($_SESSION['admin_id']) || isset($_SESSION['admin_email'])) {
             <a href="#" id="forgot_pswd">Forgot password?</a>
             <hr>
 
-            <!-- <p>Don't have an account!</p>  -->
-            <button class="btn btn-primary btn-block" type="button">
-                <a href="register.php" style="color:white;text-decoration:none;text-align:center;">
-                    <i class="fas fa-user-plus"></i> Sign up New Account
-                </a>
-            </button>
         </form>
 
         <div class="form-reset">

@@ -1,8 +1,3 @@
-<link rel="icon" href="../images/logo2.png" type="image/x-icon">
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 <?php
 session_start();
 if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
@@ -10,6 +5,8 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
     exit();
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +19,10 @@ if (isset($_SESSION['id']) || isset($_SESSION['email'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-GLhlTQ8iN17SKgyRUxZNl+Uu7anh2U6zfeqVrO8C6q8x0n2tOr/zmZKUfH5O5f5y" crossorigin="anonymous">
     <link rel="stylesheet" href="../stylelogin.css">
     <title>BookHaven</title>
+    <link rel="icon" href="../images/logo2.png" type="image/x-icon">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>

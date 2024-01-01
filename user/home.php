@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
 session_start();
 if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
@@ -8,6 +5,9 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['email'])) {
     exit();
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+
 
 <head>
     <meta charset="UTF-8">

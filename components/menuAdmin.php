@@ -21,7 +21,6 @@
     function menuRedirect(event, path) {
         var currentUrl = "http://localhost/BookHaven/admin/" + path;
         var urlWithoutParams = currentUrl.split('?')[0];
-        window.history.replaceState({}, document.title, urlWithoutParams);
         window.location.href = currentUrl
     }
 
